@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{992C455B-FCB4-4FC2-B2FD-873577C30DD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Domain.Core", "TradeUp.Domain.Core\TradeUp.Domain.Core.csproj", "{5088D570-31D4-4DA0-8B51-A1B8447C939B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5088D570-31D4-4DA0-8B51-A1B8447C939B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5088D570-31D4-4DA0-8B51-A1B8447C939B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5088D570-31D4-4DA0-8B51-A1B8447C939B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5088D570-31D4-4DA0-8B51-A1B8447C939B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5088D570-31D4-4DA0-8B51-A1B8447C939B} = {992C455B-FCB4-4FC2-B2FD-873577C30DD6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F9B118AD-3128-4F60-8D3C-6B44EB10A622}
+	EndGlobalSection
+EndGlobal
