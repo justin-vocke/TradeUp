@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure.Bus", "Infra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Infrastructure.Bus", "TradeUp.Infrastructure.Bus\TradeUp.Infrastructure.Bus.csproj", "{0922442E-9071-44C8-B18B-D82D98F69FA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Infrastructure", "TradeUp.Infrastructure\TradeUp.Infrastructure.csproj", "{2A24FC56-E231-4A13-9ABB-75FD16755923}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{0922442E-9071-44C8-B18B-D82D98F69FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0922442E-9071-44C8-B18B-D82D98F69FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0922442E-9071-44C8-B18B-D82D98F69FA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A24FC56-E231-4A13-9ABB-75FD16755923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A24FC56-E231-4A13-9ABB-75FD16755923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A24FC56-E231-4A13-9ABB-75FD16755923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A24FC56-E231-4A13-9ABB-75FD16755923}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
