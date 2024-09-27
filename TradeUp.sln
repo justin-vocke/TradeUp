@@ -5,13 +5,17 @@ VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{992C455B-FCB4-4FC2-B2FD-873577C30DD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Domain.Core", "TradeUp.Domain.Core\TradeUp.Domain.Core.csproj", "{5088D570-31D4-4DA0-8B51-A1B8447C939B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeUp.Domain.Core", "TradeUp.Domain.Core\TradeUp.Domain.Core.csproj", "{5088D570-31D4-4DA0-8B51-A1B8447C939B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure.Bus", "Infrastructure.Bus", "{28557FDF-BB05-4F0C-A9A1-FDAA63E6CB17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Infrastructure.Bus", "TradeUp.Infrastructure.Bus\TradeUp.Infrastructure.Bus.csproj", "{0922442E-9071-44C8-B18B-D82D98F69FA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeUp.Infrastructure.Bus", "TradeUp.Infrastructure.Bus\TradeUp.Infrastructure.Bus.csproj", "{0922442E-9071-44C8-B18B-D82D98F69FA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Infrastructure", "TradeUp.Infrastructure\TradeUp.Infrastructure.csproj", "{2A24FC56-E231-4A13-9ABB-75FD16755923}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeUp.Infrastructure", "TradeUp.Infrastructure\TradeUp.Infrastructure.csproj", "{2A24FC56-E231-4A13-9ABB-75FD16755923}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Api", "TradeUp.Api\TradeUp.Api.csproj", "{A0FC5554-18D6-482D-984E-ADA7D2EB88EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Shared", "TradeUp.Shared\TradeUp.Shared.csproj", "{CE2D7538-B70F-43E3-A4A4-BA0A35E0F7A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +35,14 @@ Global
 		{2A24FC56-E231-4A13-9ABB-75FD16755923}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A24FC56-E231-4A13-9ABB-75FD16755923}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A24FC56-E231-4A13-9ABB-75FD16755923}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0FC5554-18D6-482D-984E-ADA7D2EB88EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0FC5554-18D6-482D-984E-ADA7D2EB88EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0FC5554-18D6-482D-984E-ADA7D2EB88EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0FC5554-18D6-482D-984E-ADA7D2EB88EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE2D7538-B70F-43E3-A4A4-BA0A35E0F7A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE2D7538-B70F-43E3-A4A4-BA0A35E0F7A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE2D7538-B70F-43E3-A4A4-BA0A35E0F7A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE2D7538-B70F-43E3-A4A4-BA0A35E0F7A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
