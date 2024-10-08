@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Api", "TradeUp.Api\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Shared", "TradeUp.Shared\TradeUp.Shared.csproj", "{CE2D7538-B70F-43E3-A4A4-BA0A35E0F7A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.BackgroundServices", "TradeUp.BackgroundServices\TradeUp.BackgroundServices.csproj", "{A49FF1B9-D5D3-475E-AE2B-0E36BA02E9D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{CE2D7538-B70F-43E3-A4A4-BA0A35E0F7A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE2D7538-B70F-43E3-A4A4-BA0A35E0F7A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE2D7538-B70F-43E3-A4A4-BA0A35E0F7A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A49FF1B9-D5D3-475E-AE2B-0E36BA02E9D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A49FF1B9-D5D3-475E-AE2B-0E36BA02E9D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A49FF1B9-D5D3-475E-AE2B-0E36BA02E9D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A49FF1B9-D5D3-475E-AE2B-0E36BA02E9D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
