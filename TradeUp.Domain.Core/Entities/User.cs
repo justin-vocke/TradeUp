@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace TradeUp.Domain.Core.Entities
 {
-    internal class Notification
+    internal class User
     {
-        public DateTime CreatedAt { get; set; }
     }
 }
