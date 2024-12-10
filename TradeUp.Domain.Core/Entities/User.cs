@@ -8,5 +8,7 @@ namespace TradeUp.Domain.Core.Entities
 {
     internal class User
     {
+        public Guid UserId { get; set; }
+
     }
 }

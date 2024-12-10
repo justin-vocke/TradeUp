@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tradeup.Domain.Core.Events
+namespace TradeUp.Domain.Core.Entities
 {
     public abstract class Event
     {
         public DateTime TimeStamp { get; protected set; }
 
-        protected Event() 
+        protected Event()
         {
             TimeStamp = DateTime.Now;
         }

@@ -1,7 +1,5 @@
 ﻿using MediatR;
 using Tradeup.Domain.Core.Bus;
-using Tradeup.Domain.Core.Commands;
-using Tradeup.Domain.Core.Events;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
@@ -11,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TradeUp.Domain.Core.Entities;
 
 namespace Tradeup.Infrastructure.Bus
 {

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tradeup.Domain.Core.Events
+namespace TradeUp.Domain.Core.Entities
 {
-    public abstract class Message: IRequest<bool>
+    public abstract class Message : IRequest<bool>
     {
         public string MessageType { get; protected set; }
 
