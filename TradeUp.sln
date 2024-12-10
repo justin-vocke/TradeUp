@@ -13,11 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeUp.Infrastructure.Bus"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeUp.Infrastructure", "TradeUp.Infrastructure\TradeUp.Infrastructure.csproj", "{2A24FC56-E231-4A13-9ABB-75FD16755923}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Api", "TradeUp.Api\TradeUp.Api.csproj", "{A0FC5554-18D6-482D-984E-ADA7D2EB88EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeUp.Api", "TradeUp.Api\TradeUp.Api.csproj", "{A0FC5554-18D6-482D-984E-ADA7D2EB88EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Shared", "TradeUp.Shared\TradeUp.Shared.csproj", "{CE2D7538-B70F-43E3-A4A4-BA0A35E0F7A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeUp.Shared", "TradeUp.Shared\TradeUp.Shared.csproj", "{CE2D7538-B70F-43E3-A4A4-BA0A35E0F7A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.BackgroundServices", "TradeUp.BackgroundServices\TradeUp.BackgroundServices.csproj", "{A49FF1B9-D5D3-475E-AE2B-0E36BA02E9D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeUp.BackgroundServices", "TradeUp.BackgroundServices\TradeUp.BackgroundServices.csproj", "{A49FF1B9-D5D3-475E-AE2B-0E36BA02E9D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Application", "TradeUp.Application\TradeUp.Application.csproj", "{9FC1FE33-5693-4C62-9508-1FD3E83BCBA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{A49FF1B9-D5D3-475E-AE2B-0E36BA02E9D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A49FF1B9-D5D3-475E-AE2B-0E36BA02E9D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A49FF1B9-D5D3-475E-AE2B-0E36BA02E9D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FC1FE33-5693-4C62-9508-1FD3E83BCBA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FC1FE33-5693-4C62-9508-1FD3E83BCBA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FC1FE33-5693-4C62-9508-1FD3E83BCBA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FC1FE33-5693-4C62-9508-1FD3E83BCBA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
