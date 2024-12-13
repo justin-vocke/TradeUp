@@ -15,12 +15,12 @@ namespace TradeUp.Domain.Core.Events
         public decimal ThresholdPrice { get; set; }
         
 
-        public PriceThresholdReachedEvent(Subscription subscription)
+        public PriceThresholdReachedEvent(Guid userId, string email, string tickerSymbol, decimal thresholdPrice)
         {
-            UserId = subscription.UserId;
-            Email = subscription.Email;
-            TickerSymbol = subscription.TickerSymbol;
-            ThresholdPrice = subscription.Threshold;
+            UserId = userId;
+            Email = email;
+            TickerSymbol = tickerSymbol;
+            ThresholdPrice = thresholdPrice;
         }
     }
 }
