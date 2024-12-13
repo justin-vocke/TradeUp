@@ -9,6 +9,8 @@ using Tradeup.Domain.Core.Bus;
 using Tradeup.Infrastructure.Bus;
 using TradeUp.Application.CommandHandlers;
 using TradeUp.Application.Commands;
+using TradeUp.Application.EventHandlers;
+using TradeUp.Domain.Core.Events;
 
 namespace TradeUp.Infrastructure.IoC
 {
@@ -26,6 +28,10 @@ namespace TradeUp.Infrastructure.IoC
             //Domain Stock services
             services.AddTransient<IRequestHandler<CreatePriceThresholdNotificationCommand, bool>, PriceThresholdNotificationCommandHandler>();
 
+            //Domain events
+            services.AddTransient<IEventHandler<PriceThresholdReachedEvent>, PriceThresholdReachedEventHandler>();
+            //Subscriptions
+            services.AddTransient<PriceThresholdReachedEventHandler>();
         }
     }
 }

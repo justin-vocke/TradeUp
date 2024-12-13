@@ -22,15 +22,7 @@ namespace TradeUp.Application.CommandHandlers
         public Task<bool> Handle(CreatePriceThresholdNotificationCommand request, CancellationToken cancellationToken)
         {
             
-            var stockSubscription = new Subscription
-            {
-                UserId = request.UserId,
-                TickerSymbol = request.TickerSymbol,
-                Email = request.Email,
-                Threshold = request.Threshold,
-
-            };
-            _eventBus.Publish(new PriceThresholdReachedEvent(stockSubscription));
+            _eventBus.Publish(new PriceThresholdReachedEvent(request.UserId, request.TickerSymbol, request.Email, request.Threshold));
             return Task.FromResult(true);
         }
     }

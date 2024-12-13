@@ -1,4 +1,8 @@
 using System.Reflection;
+using Tradeup.Domain.Core.Bus;
+using TradeUp.Application.EventHandlers;
+using TradeUp.Domain.Core.Events;
+using TradeUp.Infrastructure.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +15,13 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
+RegisterServices(builder.Services);
+
+void RegisterServices(IServiceCollection services)
+{
+    DependencyContainer.RegisterServices(services);
+}
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -18,6 +29,14 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+ConfigureEventBus(app);
+
+void ConfigureEventBus(IApplicationBuilder app)
+{
+    var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+    eventBus.Subscribe<PriceThresholdReachedEvent, PriceThresholdReachedEventHandler>();
 }
 
 app.UseHttpsRedirection();
