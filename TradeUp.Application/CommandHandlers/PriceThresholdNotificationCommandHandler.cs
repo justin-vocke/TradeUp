@@ -21,7 +21,7 @@ namespace TradeUp.Application.CommandHandlers
         }
         public Task<bool> Handle(CreatePriceThresholdNotificationCommand request, CancellationToken cancellationToken)
         {
-            //TODO: Publish to rabbitmq
+            
             var stockSubscription = new Subscription
             {
                 UserId = request.UserId,
