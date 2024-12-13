@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tradeup.Domain.Core.Bus;
 using TradeUp.Application.Commands;
+using TradeUp.Domain.Core.Entities;
 using TradeUp.Domain.Core.Events;
 
 namespace TradeUp.Application.CommandHandlers
@@ -21,7 +22,16 @@ namespace TradeUp.Application.CommandHandlers
         public Task<bool> Handle(CreatePriceThresholdNotificationCommand request, CancellationToken cancellationToken)
         {
             //TODO: Publish to rabbitmq
-            _eventBus.Publish(new PriceThresholdReachedEvent()
+            var stockSubscription = new Subscription
+            {
+                UserId = request.UserId,
+                TickerSymbol = request.TickerSymbol,
+                Email = request.Email,
+                Threshold = request.Threshold,
+
+            };
+            _eventBus.Publish(new PriceThresholdReachedEvent(stockSubscription));
+            return Task.FromResult(true);
         }
     }
 }

@@ -19,7 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeUp.Shared", "TradeUp.S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeUp.BackgroundServices", "TradeUp.BackgroundServices\TradeUp.BackgroundServices.csproj", "{A49FF1B9-D5D3-475E-AE2B-0E36BA02E9D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Application", "TradeUp.Application\TradeUp.Application.csproj", "{9FC1FE33-5693-4C62-9508-1FD3E83BCBA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeUp.Application", "TradeUp.Application\TradeUp.Application.csproj", "{9FC1FE33-5693-4C62-9508-1FD3E83BCBA6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure.Ioc", "Infrastructure.Ioc", "{E0BF56DC-40BA-454C-B34C-E30BA1D108E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Infrastructure.IoC", "TradeUp.Infrastructure.IoC\TradeUp.Infrastructure.IoC.csproj", "{994C9E3D-E09C-486A-B716-B40DD8995944}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +59,10 @@ Global
 		{9FC1FE33-5693-4C62-9508-1FD3E83BCBA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FC1FE33-5693-4C62-9508-1FD3E83BCBA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FC1FE33-5693-4C62-9508-1FD3E83BCBA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{994C9E3D-E09C-486A-B716-B40DD8995944}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{994C9E3D-E09C-486A-B716-B40DD8995944}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{994C9E3D-E09C-486A-B716-B40DD8995944}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{994C9E3D-E09C-486A-B716-B40DD8995944}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +70,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5088D570-31D4-4DA0-8B51-A1B8447C939B} = {992C455B-FCB4-4FC2-B2FD-873577C30DD6}
 		{0922442E-9071-44C8-B18B-D82D98F69FA2} = {28557FDF-BB05-4F0C-A9A1-FDAA63E6CB17}
+		{994C9E3D-E09C-486A-B716-B40DD8995944} = {E0BF56DC-40BA-454C-B34C-E30BA1D108E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F9B118AD-3128-4F60-8D3C-6B44EB10A622}
