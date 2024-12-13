@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CommandHandlers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\TradeUp.Domain.Core\TradeUp.Domain.Core.csproj" />
   </ItemGroup>
 

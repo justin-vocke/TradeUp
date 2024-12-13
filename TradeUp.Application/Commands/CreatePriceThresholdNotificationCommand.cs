@@ -7,9 +7,14 @@ using TradeUp.Domain.Core.Entities;
 
 namespace TradeUp.Application.Commands
 {
-    public class CreatePriceThresholdNotificationCommand : Command
+    public class CreatePriceThresholdNotificationCommand : PriceThresholdNotificationCommand
     {
-        public Guid UserId { get; set; }
-
+        public CreatePriceThresholdNotificationCommand(Guid userId, string email, string tickerSymbol, decimal threshold)
+        {
+            UserId = userId;
+            Email = email;
+            TickerSymbol = tickerSymbol;
+            Threshold = threshold;
+        }
     }
 }

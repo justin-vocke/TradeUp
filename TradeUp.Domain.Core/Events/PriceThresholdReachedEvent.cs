@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TradeUp.Domain.Core.Entities;
 
 namespace TradeUp.Domain.Core.Events
 {
-    internal class PriceThresholdReachedEvent
+    public class PriceThresholdReachedEvent : Event
     {
         public Guid UserId { get; set; }
-        public string StockSymbol { get; set; }
+        public string Email { get; set; }
+        public string TickerSymbol { get; set; }
         public decimal ThresholdPrice { get; set; }
-        public decimal CurrentPrice { get; set; }
+        
 
-        public PriceThresholdReachedEvent(Guid userId, string stockSymbol, decimal thresholdPrice, decimal currentPrice)
+        public PriceThresholdReachedEvent(Subscription subscription)
         {
-            UserId = userId;
-            StockSymbol = stockSymbol;
-            ThresholdPrice = thresholdPrice;
-            CurrentPrice = currentPrice;
+            UserId = subscription.UserId;
+            Email = subscription.Email;
+            TickerSymbol = subscription.TickerSymbol;
+            ThresholdPrice = subscription.Threshold;
         }
     }
 }
