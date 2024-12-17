@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Tradeup.Domain.Core.Bus;
+using TradeUp.Application;
 using TradeUp.Application.EventHandlers;
 using TradeUp.Domain.Core.Events;
 using TradeUp.Infrastructure;
@@ -13,21 +14,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
-builder.Services.AddDbContext<ApplicationDbContext>(
 
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-    );
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
-RegisterServices(builder.Services);
 
-void RegisterServices(IServiceCollection services)
+RegisterServices(builder.Services, builder.Configuration);
+
+void RegisterServices(IServiceCollection services, IConfiguration configuration)
 {
     DependencyContainer.RegisterServices(services);
+    builder.Services.RegisterApplicationServices();
+    builder.Services.RegisterInfrastructureServices(configuration);
+
 }
 
 var app = builder.Build();

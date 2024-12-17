@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TradeUp.Domain.Core.Abstractions;
 
 namespace TradeUp.Domain.Core.Entities
 {
-    public class User
+    public sealed class User : Entity
     {
-        public Guid UserId { get; set; }
+        private User(Guid id, string email) : base(id)
+        {
+            Email = email;
+        }
         public string Email { get; set; }
+
+        public static User Create(string email)
+        {
+            var user = new User(Guid.NewGuid(), email);
+            return user;
+        }
     }
 }
