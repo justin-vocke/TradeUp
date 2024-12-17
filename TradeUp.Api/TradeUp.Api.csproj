@@ -21,8 +21,4 @@
     <ProjectReference Include="..\TradeUp.Infrastructure\TradeUp.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\Users\" />
-  </ItemGroup>
-
 </Project>

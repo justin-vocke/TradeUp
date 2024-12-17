@@ -1,10 +1,5 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tradeup.Domain.Core.Bus;
 using Tradeup.Infrastructure.Bus;
 using TradeUp.Application.CommandHandlers;
@@ -27,6 +22,8 @@ namespace TradeUp.Infrastructure.IoC
                 return new RabbitMQBus(sp.GetRequiredService<IMediator>(), scopeFactory);
             });
 
+            
+
             //Domain Stock services
             services.AddTransient<IRequestHandler<CreatePriceThresholdNotificationCommand, bool>, PriceThresholdNotificationCommandHandler>();
             services.AddTransient<IStockService, StockService>();
@@ -35,5 +32,7 @@ namespace TradeUp.Infrastructure.IoC
             //Subscriptions
             services.AddTransient<PriceThresholdReachedEventHandler>();
         }
+
+        
     }
 }
