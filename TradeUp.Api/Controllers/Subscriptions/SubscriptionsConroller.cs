@@ -22,14 +22,21 @@ namespace TradeUp.Api.Controllers.Subscriptions
             CancellationToken cancellationToken)
         {
             var command = new CreateSubscriptionCommand
-            {
-                UserId = request.UserId,
-                Threshold = request.Threshold,
-                Ticker = request.Ticker,
-            };
+            (
+                request.Id,
+                request.Email,
+                request.Threshold,
+                request.Ticker,
+                request.Position
+            );
 
             var result = await _sender.Send(command, cancellationToken);
-            return Ok();
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result.Error);
+            }
+            return Ok(result);
         }
     }
 }
