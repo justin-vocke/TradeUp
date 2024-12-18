@@ -26,7 +26,7 @@ namespace TradeUp.Infrastructure
             });
 
             services.AddScoped<IUserRepository, UserRepository>();
-
+            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
 
             return services;

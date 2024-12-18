@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using TradeUp.Application.Interfaces;
 using TradeUp.Domain.Core.Entities;
+using static TradeUp.Domain.Core.Entities.Subscription;
 
 namespace TradeUp.Application.Commands.Subscriptions
 {
-    public class CreateSubscriptionCommand : Command
-    {
-        public Guid UserId { get; set; }
-        public decimal Threshold { get; set; }
-        public string Ticker { get; set; }
-    }
+    public sealed record CreateSubscriptionCommand(Guid UserId, string Email,
+        decimal Threshold, string Ticker, ThresholdPosition Position) : ICommand<Guid>;
+    
+    
 }

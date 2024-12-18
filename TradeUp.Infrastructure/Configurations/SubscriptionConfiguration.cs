@@ -21,6 +21,10 @@ namespace TradeUp.Infrastructure.Configurations
 
             builder.Property(sub => sub.TickerSymbol).IsRequired();
 
+            builder.Property(sub => sub.UserNotified).HasDefaultValue(false);
+
+            builder.Property(sub => sub.Position).IsRequired();
+
             builder.HasOne<User>()
                 .WithMany()
                 .HasForeignKey(sub => sub.UserId);
