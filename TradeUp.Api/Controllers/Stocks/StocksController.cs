@@ -10,9 +10,11 @@ namespace TradeUp.Api.Controllers.Stocks
     public class StocksController : ControllerBase
     {
         private readonly IStockService _stockService;
-        public StocksController(IStockService stockService)
+        private readonly IStockApiClient _stockApiClient;
+        public StocksController(IStockService stockService, IStockApiClient stockApiClient)
         {
             _stockService = stockService;
+            _stockApiClient = stockApiClient;
         }
 
         [HttpPost]
@@ -20,6 +22,13 @@ namespace TradeUp.Api.Controllers.Stocks
         {
             _stockService.SendStockThresholdNotification(subscription);
             return Ok();
+        }
+
+        [HttpPost("GetStockPrice")]
+        public async Task<IActionResult> GetStockPriceAsync([FromBody] string ticker)
+        {
+            var result = await _stockApiClient.GetStockPriceAsync(ticker);
+            return Ok(result);
         }
     }
 }

@@ -2,10 +2,14 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Tradeup.Domain.Core.Bus;
 using TradeUp.Application;
+using TradeUp.Application.Configuration;
 using TradeUp.Application.EventHandlers;
+using TradeUp.Application.Interfaces;
 using TradeUp.Domain.Core.Events;
 using TradeUp.Infrastructure;
 using TradeUp.Infrastructure.IoC;
+using TradeUp.Infrastructure.Services;
+using static System.Net.WebRequestMethods;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +23,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpClient<IStockApiClient, StockApiClient>(client =>
+{
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+    client.DefaultRequestHeaders.Add("User-Agent", "TradeUp"); // Optional, but good practice for APIs
+    
+});
+builder.Services.Configure<AlphaVantageConfiguration>(builder.Configuration.GetSection("AlphaVantage"));
 
 
 RegisterServices(builder.Services, builder.Configuration);

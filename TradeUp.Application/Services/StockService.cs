@@ -19,6 +19,11 @@ namespace TradeUp.Application.Services
             _eventBus = eventBus;
         }
 
+        public Task SendRequestForStockPriceAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public void SendStockThresholdNotification(Subscription subscription)
         {
             var createPriceThresholdNotificationCommand = new CreatePriceThresholdNotificationCommand
