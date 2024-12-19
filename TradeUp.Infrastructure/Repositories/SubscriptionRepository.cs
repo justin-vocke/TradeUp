@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,16 @@ namespace TradeUp.Infrastructure.Repositories
         public SubscriptionRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
             
+        }
+
+        public async Task<IEnumerable<string>> GetAllDistinctTickersFromSubscriptions(CancellationToken cancellationToken = default)
+        {
+            var distinctTickers = await DbContext.Set<Subscription>()
+                .GroupBy(x => x.TickerSymbol)
+                .Select(group => group.First().TickerSymbol)
+                .ToListAsync();
+
+            return distinctTickers;
         }
     }
 }

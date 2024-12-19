@@ -11,6 +11,7 @@ namespace TradeUp.Domain.Core.Interfaces.Repositories
     {
         Task<Subscription?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
+        Task<IEnumerable<string>> GetAllDistinctTickersFromSubscriptions(CancellationToken cancellationToken = default);
         void Add(Subscription user);
     }
 }
