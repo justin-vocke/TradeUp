@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace TradeUp.Infrastructure.DTO.AlphaVantage
+namespace TradeUp.Application.DTO.AlphaVantage
 {
     public class GlobalQuote
     {

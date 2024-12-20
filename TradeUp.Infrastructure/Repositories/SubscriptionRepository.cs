@@ -25,5 +25,13 @@ namespace TradeUp.Infrastructure.Repositories
 
             return distinctTickers;
         }
+
+        public async Task<IEnumerable<Subscription>> GetAllSubscriptions(CancellationToken cancellationToken = default)
+        {
+            var distinctTickers = await DbContext.Set<Subscription>()
+                .ToListAsync();
+
+            return distinctTickers;
+        }
     }
 }

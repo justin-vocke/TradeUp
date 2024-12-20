@@ -11,6 +11,7 @@ namespace TradeUp.Application.Interfaces
     {
         void SendStockThresholdNotification(Subscription subscription);
 
-        Task SendRequestForStockPriceAsync();
+
+        Task CheckThresholdsAsync();
     }
 }

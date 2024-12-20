@@ -7,8 +7,8 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using TradeUp.Application.Configuration;
+using TradeUp.Application.DTO.AlphaVantage;
 using TradeUp.Application.Interfaces;
-using TradeUp.Infrastructure.DTO.AlphaVantage;
 
 namespace TradeUp.Infrastructure.Services
 {
@@ -23,7 +23,7 @@ namespace TradeUp.Infrastructure.Services
             _alphaVantageConfiguration = alphaVantageConfiguration.Value;
             _httpClient.BaseAddress = new Uri(_alphaVantageConfiguration.BaseUrl);
         }
-        public async Task<object> GetStockPriceAsync(string tickerSymbol)
+        public async Task<object> GetStockInfoAsync(string tickerSymbol)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace TradeUp.Infrastructure.Services
                 // Extract the stock price (adjust the path based on the API's JSON response structure)
                 // priceString = stockData?.GlobalQuote?.Price;
                 //return decimal.TryParse(priceString, out var price) ? price : null;
-                return content;
+                return stockData;
             }
             catch (Exception ex)
             {
