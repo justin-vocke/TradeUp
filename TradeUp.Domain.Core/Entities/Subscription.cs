@@ -10,7 +10,8 @@ namespace TradeUp.Domain.Core.Entities
     public class Subscription : Entity
     {
 
-        private Subscription(Guid id, Guid userId, string email, string tickerSymbol, decimal threshold) : base(id)
+        private Subscription(Guid id, Guid userId, string email, 
+            string tickerSymbol, decimal threshold, ThresholdPosition thresholdPosition) : base(id)
         {
             UserId = userId;
             Email = email;
@@ -29,7 +30,7 @@ namespace TradeUp.Domain.Core.Entities
         public static Subscription Create(Guid userId, string email, string tickerSymbol, 
             decimal threshold, ThresholdPosition thresholdPosition)
         {
-            var subscription = new Subscription(Guid.NewGuid(), userId, email, tickerSymbol, threshold);
+            var subscription = new Subscription(Guid.NewGuid(), userId, email, tickerSymbol, threshold, thresholdPosition);
 
             return subscription;
         }

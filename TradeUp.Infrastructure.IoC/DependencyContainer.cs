@@ -25,7 +25,6 @@ namespace TradeUp.Infrastructure.IoC
             
 
             //Domain Stock services
-            services.AddTransient<IRequestHandler<CreatePriceThresholdNotificationCommand, bool>, PriceThresholdNotificationCommandHandler>();
             services.AddTransient<IStockService, StockService>();
             //Domain events
             services.AddTransient<IEventHandler<PriceThresholdReachedEvent>, PriceThresholdReachedEventHandler>();
