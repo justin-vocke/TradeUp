@@ -17,6 +17,12 @@ namespace TradeUp.Domain.Core.Entities
             Email = email;
             TickerSymbol = tickerSymbol;
             Threshold = threshold;
+            Position = thresholdPosition;
+        }
+
+        private Subscription()
+        {
+
         }
 
         public Guid UserId { get; set; }

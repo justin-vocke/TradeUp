@@ -9,8 +9,6 @@ namespace TradeUp.Application.Interfaces
 {
     public interface IStockService
     {
-        void SendStockThresholdNotification(Subscription subscription);
-
 
         Task CheckThresholdsAsync();
     }

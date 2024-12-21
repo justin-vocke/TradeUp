@@ -23,7 +23,7 @@ namespace TradeUp.Infrastructure.Services
             _alphaVantageConfiguration = alphaVantageConfiguration.Value;
             _httpClient.BaseAddress = new Uri(_alphaVantageConfiguration.BaseUrl);
         }
-        public async Task<object> GetStockInfoAsync(string tickerSymbol)
+        public async Task<StockApiResponse> GetStockInfoAsync(string tickerSymbol)
         {
             try
             {

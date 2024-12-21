@@ -13,7 +13,8 @@ namespace TradeUp.Application.EventHandlers
         //want to send email to user
         public Task Handle(PriceThresholdReachedEvent @event)
         {
-            Console.WriteLine("Email sent");
+            var message = $"Threshold of {@event.ThresholdPrice} was reached for stock {@event.TickerSymbol}";
+            Console.WriteLine($"Threshold of {@event.ThresholdPrice} was reached for stock {@event.TickerSymbol}");
             var test = "stop here";
             return Task.CompletedTask;
         }

@@ -7,6 +7,7 @@ using Tradeup.Domain.Core.Bus;
 using TradeUp.Application.Commands;
 using TradeUp.Application.Interfaces;
 using TradeUp.Domain.Core.Entities;
+using TradeUp.Domain.Core.Events;
 using TradeUp.Domain.Core.Interfaces.Repositories;
 
 namespace TradeUp.Application.Services
@@ -43,6 +44,8 @@ namespace TradeUp.Application.Services
                 if(Convert.ToDecimal(stockInformation.GlobalQuote.High) >= sub.Threshold)
                 {
                     //send message to queue to notify user
+                    _eventBus.Publish(new PriceThresholdReachedEvent(sub.UserId, sub.Email, sub.TickerSymbol, sub.Threshold,
+                        sub.Position));
                 }
             }
             foreach(var sub in subsToCheckBelowThreshold)
@@ -50,22 +53,12 @@ namespace TradeUp.Application.Services
                 if (Convert.ToDecimal(stockInformation.GlobalQuote.Low) <= sub.Threshold)
                 {
                     //send message to queue to notify user
+                    _eventBus.Publish(new PriceThresholdReachedEvent(sub.UserId, sub.Email, sub.TickerSymbol, sub.Threshold,
+                        sub.Position));
                 }
             }
         }
 
 
-        public void SendStockThresholdNotification(Subscription subscription)
-        {
-            var createPriceThresholdNotificationCommand = new CreatePriceThresholdNotificationCommand
-            (
-                subscription.UserId,
-                subscription.Email,
-                subscription.TickerSymbol,
-                subscription.Threshold
-            );
-
-            _eventBus.SendCommand( createPriceThresholdNotificationCommand );
-        }
     }
 }

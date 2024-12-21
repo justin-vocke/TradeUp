@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TradeUp.Application.Commands.Subscriptions;
+using TradeUp.Domain.Core.Interfaces.Repositories;
 
 namespace TradeUp.Api.Controllers.Subscriptions
 {
@@ -10,10 +11,19 @@ namespace TradeUp.Api.Controllers.Subscriptions
     public class SubscriptionsConroller : ControllerBase
     {
         private readonly ISender _sender;
+        private readonly ISubscriptionRepository _subscriptionRepository;
 
-        public SubscriptionsConroller(ISender sender)
+        public SubscriptionsConroller(ISender sender, ISubscriptionRepository subscriptionRepository)
         {
             _sender = sender;
+            _subscriptionRepository = subscriptionRepository;
+        }
+
+        [HttpGet("GetSubscription")]
+        public async Task<IActionResult> GetSubscription(Guid id)
+        {
+            var sub = await _subscriptionRepository.GetByIdAsync(id);
+            return Ok(sub);
         }
 
         [HttpPost]

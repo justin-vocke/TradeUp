@@ -17,17 +17,17 @@ namespace TradeUp.Api.Controllers.Stocks
             _stockApiClient = stockApiClient;
         }
 
-        [HttpPost]
-        public IActionResult CheckForThreshold([FromBody] Subscription subscription)
+        [HttpPost("CheckThresholds")]
+        public async Task<IActionResult> CheckForThresholdAsync()
         {
-            _stockService.SendStockThresholdNotification(subscription);
+            await _stockService.CheckThresholdsAsync();
             return Ok();
         }
 
-        [HttpPost("GetStockPrice")]
-        public async Task<IActionResult> GetStockPriceAsync([FromBody] string ticker)
+        [HttpPost("GetStockInfo")]
+        public async Task<IActionResult> GetStockInfo([FromBody] string ticker)
         {
-            var result = await _stockApiClient.GetStockPriceAsync(ticker);
+            var result = await _stockApiClient.GetStockInfoAsync(ticker);
             return Ok(result);
         }
     }
