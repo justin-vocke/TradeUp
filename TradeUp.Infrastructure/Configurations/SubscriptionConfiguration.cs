@@ -23,7 +23,7 @@ namespace TradeUp.Infrastructure.Configurations
 
             builder.Property(sub => sub.UserNotified).HasDefaultValue(false);
 
-            builder.Property(sub => sub.Position).IsRequired();
+            builder.Property(sub => sub.Position).HasConversion<int>().IsRequired();
 
             builder.HasOne<User>()
                 .WithMany()
