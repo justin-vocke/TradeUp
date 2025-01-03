@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Tradeup.Domain.Core.Bus;
@@ -8,6 +9,7 @@ using TradeUp.Application.Interfaces;
 using TradeUp.Domain.Core.Events;
 using TradeUp.Infrastructure;
 using TradeUp.Infrastructure.IoC;
+using TradeUp.Infrastructure.Models;
 using TradeUp.Infrastructure.Services;
 using static System.Net.WebRequestMethods;
 
@@ -19,6 +21,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

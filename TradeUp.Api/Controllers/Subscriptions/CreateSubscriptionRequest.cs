@@ -2,6 +2,6 @@
 
 namespace TradeUp.Api.Controllers.Subscriptions
 {
-    public sealed record CreateSubscriptionRequest(Guid Id, string Email, decimal Threshold, 
+    public sealed record CreateSubscriptionRequest(string Id, string Email, decimal Threshold, 
         string Ticker, ThresholdPosition Position);
 }

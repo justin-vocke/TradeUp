@@ -12,7 +12,7 @@ using TradeUp.Domain.Core.Interfaces.Repositories;
 
 namespace TradeUp.Application.CommandHandlers.Users
 {
-    public class CreateUserCommandHandler : ICommandHandler<CreateUserCommand, Guid>
+    public class CreateUserCommandHandler : ICommandHandler<CreateUserCommand, string>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository _userRepository;
@@ -23,7 +23,7 @@ namespace TradeUp.Application.CommandHandlers.Users
             _userRepository = userRepository;
         }
 
-        public async Task<Result<Guid>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<Result<string>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace TradeUp.Application.CommandHandlers.Users
             }
             catch (ConcurrencyException)
             {
-                return Result.Failure<Guid>(new Error("User.Overlap", "Error processing new user"));
+                return Result.Failure<string>(new Error("User.Overlap", "Error processing new user"));
             }
             
         }

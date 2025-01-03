@@ -8,6 +8,6 @@ using TradeUp.Domain.Core.Entities;
 
 namespace TradeUp.Application.Commands.Users
 {
-    public sealed record CreateUserCommand(string Email) : ICommand<Guid>;
+    public sealed record CreateUserCommand(string Email) : ICommand<string>;
     
 }
