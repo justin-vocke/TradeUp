@@ -363,3 +363,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /TradeUp.Api/appsettings.json
+/TradeUp.Api/appsettings.Development.json
+/docker-compose.override.yml
+/docker-compose.yml

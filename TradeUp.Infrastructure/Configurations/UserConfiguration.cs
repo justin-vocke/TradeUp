@@ -6,13 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TradeUp.Domain.Core.Entities;
-using TradeUp.Infrastructure.Models;
 
 namespace TradeUp.Infrastructure.Configurations
 {
-    internal sealed class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
+    internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<ApplicationUser> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.ToTable("Users");
 

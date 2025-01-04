@@ -8,7 +8,7 @@ namespace TradeUp.Domain.Core.Abstractions
 {
     public abstract class Entity
     {
-        protected Entity(string id)
+        protected Entity(Guid id)
         {
             Id = id;
         }
@@ -17,6 +17,6 @@ namespace TradeUp.Domain.Core.Abstractions
         {
 
         }
-        public string Id { get; init; }
+        public Guid Id { get; init; }
     }
 }

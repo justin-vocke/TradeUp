@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Tradeup.Domain.Core.Bus;
+using TradeUp.Api.Extensions;
 using TradeUp.Application;
 using TradeUp.Application.Configuration;
 using TradeUp.Application.EventHandlers;
@@ -9,7 +10,6 @@ using TradeUp.Application.Interfaces;
 using TradeUp.Domain.Core.Events;
 using TradeUp.Infrastructure;
 using TradeUp.Infrastructure.IoC;
-using TradeUp.Infrastructure.Models;
 using TradeUp.Infrastructure.Services;
 using static System.Net.WebRequestMethods;
 
@@ -20,9 +20,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
-
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultTokenProviders();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -53,6 +50,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.ApplyMigrations();
 }
 
 ConfigureEventBus(app);

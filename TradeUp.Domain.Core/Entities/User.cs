@@ -9,7 +9,7 @@ namespace TradeUp.Domain.Core.Entities
 {
     public sealed class User : Entity
     {
-        private User(string id, string email) : base(id)
+        private User(Guid id, string email) : base(id)
         {
             Email = email;
         }
@@ -18,7 +18,7 @@ namespace TradeUp.Domain.Core.Entities
 
         public static User Create(string email)
         {
-            var user = new User(Guid.NewGuid().ToString(), email);
+            var user = new User(Guid.NewGuid(), email);
             return user;
         }
 

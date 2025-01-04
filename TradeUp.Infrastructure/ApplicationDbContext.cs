@@ -9,11 +9,10 @@ using System.Threading.Tasks;
 using TradeUp.Application.Exceptions;
 using TradeUp.Domain.Core.Entities;
 using TradeUp.Domain.Core.Interfaces.Repositories;
-using TradeUp.Infrastructure.Models;
 
 namespace TradeUp.Infrastructure
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IUnitOfWork
+    public class ApplicationDbContext : DbContext, IUnitOfWork
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

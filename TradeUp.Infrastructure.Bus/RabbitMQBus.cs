@@ -78,7 +78,7 @@ namespace Tradeup.Infrastructure.Bus
 
         private void StartBasicConsume<T>() where T : Event
         {
-            var factory = new ConnectionFactory() { HostName = "localhost", DispatchConsumersAsync = true };
+            var factory = new ConnectionFactory() { HostName = "rabbitmq", DispatchConsumersAsync = true };
 
             var connection = factory.CreateConnection();
             var channel = connection.CreateModel();
