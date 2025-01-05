@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TradeUp.Application.Commands.Subscriptions;
@@ -6,6 +7,7 @@ using TradeUp.Domain.Core.Interfaces.Repositories;
 
 namespace TradeUp.Api.Controllers.Subscriptions
 {
+    [Authorize]
     [Route("api/subscriptions")]
     [ApiController]
     public class SubscriptionsConroller : ControllerBase

@@ -8,6 +8,7 @@ using TradeUp.Application.EventHandlers;
 using TradeUp.Application.Interfaces;
 using TradeUp.Application.Services;
 using TradeUp.Domain.Core.Events;
+using TradeUp.Infrastructure.Authentication;
 
 namespace TradeUp.Infrastructure.IoC
 {
@@ -30,6 +31,8 @@ namespace TradeUp.Infrastructure.IoC
             services.AddTransient<IEventHandler<PriceThresholdReachedEvent>, PriceThresholdReachedEventHandler>();
             //Subscriptions
             services.AddTransient<PriceThresholdReachedEventHandler>();
+
+            services.AddTransient<IAuthenticationService, AuthenticationService>();
         }
 
         

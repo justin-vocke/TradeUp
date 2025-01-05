@@ -9,16 +9,32 @@ namespace TradeUp.Domain.Core.Entities
 {
     public sealed class User : Entity
     {
-        private User(Guid id, string email) : base(id)
+        private User(Guid id, string email, string firstName, string lastName) : base(id)
         {
             Email = email;
+            FirstName = firstName;
+            LastName = lastName;
         }
         public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public bool IsActive { get; private set; } = true;
+        public string IdentityId { get; private set; } = string.Empty;
 
-        public static User Create(string email)
+        public static User Create(string email, string firstName, string lastName)
         {
-            var user = new User(Guid.NewGuid(), email);
+            var user = new User(Guid.NewGuid(), email, firstName, lastName);
             return user;
+        }
+
+        public void Deactivate()
+        {
+            IsActive = false;
+        }
+
+        public void SetIdentityId(string identityId)
+        {
+            IdentityId = identityId;
         }
     }
 }

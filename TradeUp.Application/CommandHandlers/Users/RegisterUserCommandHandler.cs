@@ -12,22 +12,35 @@ using TradeUp.Domain.Core.Interfaces.Repositories;
 
 namespace TradeUp.Application.CommandHandlers.Users
 {
-    public class CreateUserCommandHandler : ICommandHandler<CreateUserCommand, Guid>
+    public class RegisterUserCommandHandler : ICommandHandler<RegisterUserCommand, Guid>
     {
+        private readonly IAuthenticationService _authenticationService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository _userRepository;
 
-        public CreateUserCommandHandler(IUnitOfWork unitOfWork, IUserRepository userRepository)
+        public RegisterUserCommandHandler(
+            IUnitOfWork unitOfWork, 
+            IUserRepository userRepository, 
+            IAuthenticationService authenticationService)
         {
             _unitOfWork = unitOfWork;
             _userRepository = userRepository;
+            _authenticationService = authenticationService;
         }
 
-        public async Task<Result<Guid>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<Result<Guid>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                var user = User.Create(request.FirstName, request.LastName, request.Email);
+                var user = User.Create(request.Email, request.FirstName, request.LastName);
+
+                var identityId = await _authenticationService.RegisterAsync(
+                    user,
+                    request.Password,
+                    cancellationToken);
+
+                user.SetIdentityId(identityId);
+
                 _userRepository.Add(user);
                 await _unitOfWork.SaveChangesAsync();
 
