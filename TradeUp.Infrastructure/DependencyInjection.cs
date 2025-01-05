@@ -2,11 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tradeup.Infrastructure.Authentication;
+using TradeUp.Application.Interfaces;
 using TradeUp.Domain.Core.Interfaces.Repositories;
 using TradeUp.Infrastructure.Authentication;
 using TradeUp.Infrastructure.Repositories;
@@ -25,6 +28,17 @@ namespace TradeUp.Infrastructure
 
             services.Configure<AuthenticationOptions>(configuration.GetSection("Authentication"));
             services.ConfigureOptions<JwtBearerOptionsSetup>();
+
+            services.Configure<KeycloakOptions>(configuration.GetSection("Keycloak"));
+
+            services.AddTransient<AdminAuthorizationDelegatingHandler>();
+
+            services.AddHttpClient<IAuthenticationService, AuthenticationService>((serviceProvider, HttpClient) =>
+            {
+                var keyCloakOptions = serviceProvider.GetRequiredService<IOptions<KeycloakOptions>>().Value;
+                HttpClient.BaseAddress = new Uri(keyCloakOptions.AdminUrl);
+            })
+            .AddHttpMessageHandler<AdminAuthorizationDelegatingHandler>();
             return services;
         }
 

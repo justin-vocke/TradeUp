@@ -12,13 +12,13 @@ using TradeUp.Domain.Core.Interfaces.Repositories;
 
 namespace TradeUp.Application.CommandHandlers.Users
 {
-    public class RegisterCommandHandler : ICommandHandler<RegisterUserCommand, Guid>
+    public class RegisterUserCommandHandler : ICommandHandler<RegisterUserCommand, Guid>
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository _userRepository;
 
-        public RegisterCommandHandler(
+        public RegisterUserCommandHandler(
             IUnitOfWork unitOfWork, 
             IUserRepository userRepository, 
             IAuthenticationService authenticationService)

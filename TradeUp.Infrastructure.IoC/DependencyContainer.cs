@@ -8,6 +8,7 @@ using TradeUp.Application.EventHandlers;
 using TradeUp.Application.Interfaces;
 using TradeUp.Application.Services;
 using TradeUp.Domain.Core.Events;
+using TradeUp.Infrastructure.Authentication;
 
 namespace TradeUp.Infrastructure.IoC
 {
