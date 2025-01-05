@@ -366,3 +366,5 @@ FodyWeavers.xsd
 /TradeUp.Api/appsettings.Development.json
 /docker-compose.override.yml
 /docker-compose.yml
+/.files/bookify-realm-export.json
+/bookify-realm-export.json
