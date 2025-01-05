@@ -18,7 +18,8 @@ namespace TradeUp.Domain.Core.Entities
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public bool IsActive { get; private set; } = true;    
+        public bool IsActive { get; private set; } = true;
+        public string IdentityId { get; private set; } = string.Empty;
 
         public static User Create(string email, string firstName, string lastName)
         {
@@ -29,6 +30,11 @@ namespace TradeUp.Domain.Core.Entities
         public void Deactivate()
         {
             IsActive = false;
+        }
+
+        public void SetIdentityId(string identityId)
+        {
+            IdentityId = identityId;
         }
     }
 }

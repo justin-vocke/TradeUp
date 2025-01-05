@@ -20,7 +20,7 @@ namespace TradeUp.Api.Controllers.Users
         [HttpPost]
         public async Task<IActionResult> CreateUser(CreateUserRequest request)
         {
-            var command = new CreateUserCommand(request.Email);
+            var command = new CreateUserCommand(request.FirstName, request.LastName,request.Email);
 
             var result = await _sender.Send(command);
 

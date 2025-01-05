@@ -27,7 +27,7 @@ namespace TradeUp.Application.CommandHandlers.Users
         {
             try
             {
-                var user = User.Create(request.Email);
+                var user = User.Create(request.FirstName, request.LastName, request.Email);
                 _userRepository.Add(user);
                 await _unitOfWork.SaveChangesAsync();
 

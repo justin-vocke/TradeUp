@@ -30,6 +30,8 @@ namespace TradeUp.Infrastructure.IoC
             services.AddTransient<IEventHandler<PriceThresholdReachedEvent>, PriceThresholdReachedEventHandler>();
             //Subscriptions
             services.AddTransient<PriceThresholdReachedEventHandler>();
+
+            services.AddTransient<IAuthenticationService, AuthenticationService>();
         }
 
         
