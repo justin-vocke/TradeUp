@@ -24,6 +24,9 @@ namespace TradeUp.Infrastructure.Configurations
 
             builder.HasIndex(user => user.Email)
                .IsUnique();
+
+            builder.HasIndex(user => user.IdentityId).IsUnique();
+
             builder.Property(user => user.FirstName).IsRequired();
             builder.Property(user => user.LastName).IsRequired();
             
