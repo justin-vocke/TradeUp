@@ -40,6 +40,27 @@ namespace TradeUp.Api.Controllers.Users
             return Ok(result.Value);
         }
 
+        [AllowAnonymous]
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(
+            LoginUserRequest request,
+            CancellationToken cancellationToken)
+        {
+            var command = new LoginUserCommand(
+                request.Email,
+                request.Password);
+
+            var result = await _sender.Send(command, cancellationToken);
+
+            if (result.IsFailure)
+            {
+                return Unauthorized(result.Error);
+            }
+
+            return Ok(result.Value);
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> CreateUser(CreateUserRequest request)
         {

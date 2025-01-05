@@ -22,9 +22,15 @@ namespace TradeUp.Infrastructure
             IConfiguration configuration)
         {
             AddPersistence(services, configuration);
+            AddAuthentication(services, configuration);
 
+            return services;
+        }
+
+        private static void AddAuthentication(IServiceCollection services, IConfiguration configuration)
+        {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer();
+                            .AddJwtBearer();
 
             services.Configure<AuthenticationOptions>(configuration.GetSection("Authentication"));
             services.ConfigureOptions<JwtBearerOptionsSetup>();
@@ -33,13 +39,18 @@ namespace TradeUp.Infrastructure
 
             services.AddTransient<AdminAuthorizationDelegatingHandler>();
 
-            services.AddHttpClient<IAuthenticationService, AuthenticationService>((serviceProvider, HttpClient) =>
+            services.AddHttpClient<IAuthenticationService, AuthenticationService>((serviceProvider, httpClient) =>
             {
                 var keyCloakOptions = serviceProvider.GetRequiredService<IOptions<KeycloakOptions>>().Value;
-                HttpClient.BaseAddress = new Uri(keyCloakOptions.AdminUrl);
+                httpClient.BaseAddress = new Uri(keyCloakOptions.AdminUrl);
             })
             .AddHttpMessageHandler<AdminAuthorizationDelegatingHandler>();
-            return services;
+
+            services.AddHttpClient<IJwtService, JwtService>((serviceProvider, httpClient) =>
+            {
+                var keyCloakOptions = serviceProvider.GetRequiredService<IOptions<KeycloakOptions>>().Value;
+                httpClient.BaseAddress = new Uri(keyCloakOptions.TokenUrl);
+            });
         }
 
         private static void AddPersistence(IServiceCollection services, IConfiguration configuration)
