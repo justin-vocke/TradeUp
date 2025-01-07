@@ -14,6 +14,9 @@ using Tradeup.Infrastructure.Authentication;
 using AuthenticationService = TradeUp.Infrastructure.Authentication.AuthenticationService;
 using AuthenticationOptions = TradeUp.Infrastructure.Authentication.AuthenticationOptions;
 using IAuthenticationService = TradeUp.Application.Abstractions.IAuthenticationService;
+using TradeUp.Application.Abstractions.Data;
+using TradeUp.Infrastructure.Data;
+using TradeUp.Application.Abstractions.Authentication;
 
 namespace TradeUp.Infrastructure
 {
@@ -53,6 +56,9 @@ namespace TradeUp.Infrastructure
                 var keyCloakOptions = serviceProvider.GetRequiredService<IOptions<KeycloakOptions>>().Value;
                 httpClient.BaseAddress = new Uri(keyCloakOptions.TokenUrl);
             });
+            services.AddHttpContextAccessor();
+
+            services.AddScoped<IUserContext, UserContext>();
         }
 
         private static void AddPersistence(IServiceCollection services, IConfiguration configuration)
@@ -69,6 +75,9 @@ namespace TradeUp.Infrastructure
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
+
+            services.AddSingleton<ISqlConnectionFactory>(_ =>
+            new SqlConnectionFactory(connectionString));
         }
 
         private static void AddAuthorization(IServiceCollection services)
