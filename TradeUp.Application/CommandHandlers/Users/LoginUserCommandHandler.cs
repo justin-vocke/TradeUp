@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TradeUp.Application.Commands.Users;
-using TradeUp.Application.Interfaces;
-using TradeUp.Domain.Core.Entities;
+﻿using TradeUp.Application.Commands.Users;
+using TradeUp.Application.Abstractions;
+using TradeUp.Domain.Core.Abstractions;
+using TradeUp.Domain.Core.Entities.Users;
+using TradeUp.Application.Abstractions.Messaging;
 
 namespace TradeUp.Application.CommandHandlers.Users
 {

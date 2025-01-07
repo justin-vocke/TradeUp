@@ -6,8 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using TradeUp.Application.Commands.Users;
 using TradeUp.Application.Exceptions;
-using TradeUp.Application.Interfaces;
+using TradeUp.Application.Abstractions;
+using TradeUp.Application.Abstractions.Messaging;
+using TradeUp.Domain.Core.Abstractions;
 using TradeUp.Domain.Core.Entities;
+using TradeUp.Domain.Core.Entities.Users;
 using TradeUp.Domain.Core.Interfaces.Repositories;
 
 namespace TradeUp.Application.CommandHandlers.Users

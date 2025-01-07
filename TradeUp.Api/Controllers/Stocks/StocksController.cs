@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TradeUp.Application.Interfaces;
+using TradeUp.Application.Abstractions;
 using TradeUp.Domain.Core.Entities;
 
 namespace TradeUp.Api.Controllers.Stocks

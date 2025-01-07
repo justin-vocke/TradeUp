@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tradeup.Domain.Core.Bus;
 using TradeUp.Application.Commands;
-using TradeUp.Application.Interfaces;
+using TradeUp.Application.Abstractions;
 using TradeUp.Domain.Core.Entities;
 using TradeUp.Domain.Core.Events;
 using TradeUp.Domain.Core.Interfaces.Repositories;

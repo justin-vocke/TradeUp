@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Runtime.CompilerServices;
 using TradeUp.Application.Commands.Users;
+using TradeUp.Domain.Core.Entities;
 
 namespace TradeUp.Api.Controllers.Users
 {
@@ -60,6 +62,17 @@ namespace TradeUp.Api.Controllers.Users
             return Ok(result.Value);
         }
 
+        [HttpGet("me")]
+        [Authorize(Roles = Roles.Registered)]
+        public async Task<IActionResult> GetLoggedInUser(CancellationToken cancellationToken)
+        {
+            //var query = new GetLoggedInUserQuery();
+
+            //Result<UserResponse> result = await _sender.Send(query, cancellationToken);
+
+            //return Ok(result.Value);
+            return Ok();
+        }
 
         [HttpPost]
         public async Task<IActionResult> CreateUser(CreateUserRequest request)

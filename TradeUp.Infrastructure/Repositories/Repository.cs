@@ -16,7 +16,7 @@ namespace TradeUp.Infrastructure.Repositories
             DbContext = dbContext;
         }
 
-        public void Add(T entity)
+        public virtual void Add(T entity)
         {
             DbContext.Add(entity);
         }

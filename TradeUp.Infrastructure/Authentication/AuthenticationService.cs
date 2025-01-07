@@ -5,8 +5,8 @@ using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
-using TradeUp.Application.Interfaces;
-using TradeUp.Domain.Core.Entities;
+using TradeUp.Application.Abstractions;
+using TradeUp.Domain.Core.Entities.Users;
 using TradeUp.Infrastructure.Authentication.Models;
 
 namespace TradeUp.Infrastructure.Authentication

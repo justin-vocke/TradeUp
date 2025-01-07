@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TradeUp.Domain.Core.Entities;
 
-namespace TradeUp.Application.Interfaces
+namespace TradeUp.Application.Abstractions
 {
     public interface IStockService
     {

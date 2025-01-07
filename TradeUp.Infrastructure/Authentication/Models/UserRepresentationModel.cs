@@ -1,4 +1,4 @@
-﻿using TradeUp.Domain.Core.Entities;
+﻿using TradeUp.Domain.Core.Entities.Users;
 using TradeUp.Infrastructure.Authentication.Models;
 
 namespace Bookify.Infrastructure.Authentication.Models;
