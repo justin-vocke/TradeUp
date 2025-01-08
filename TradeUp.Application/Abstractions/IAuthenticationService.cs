@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TradeUp.Domain.Core.Entities;
+using TradeUp.Domain.Core.Entities.Users;
 
-namespace TradeUp.Application.Interfaces
+namespace TradeUp.Application.Abstractions
 {
     public interface IAuthenticationService
     {

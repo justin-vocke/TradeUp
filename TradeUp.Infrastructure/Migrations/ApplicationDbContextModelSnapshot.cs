@@ -22,6 +22,21 @@ namespace TradeUp.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("RoleUser", b =>
+                {
+                    b.Property<int>("RolesId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UsersId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("RolesId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("RoleUser");
+                });
+
             modelBuilder.Entity("TradeUp.Domain.Core.Entities.Subscription", b =>
                 {
                     b.Property<Guid>("Id")
@@ -57,7 +72,80 @@ namespace TradeUp.Infrastructure.Migrations
                     b.ToTable("Subscriptions", (string)null);
                 });
 
-            modelBuilder.Entity("TradeUp.Domain.Core.Entities.User", b =>
+            modelBuilder.Entity("TradeUp.Domain.Core.Entities.Users.Permission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("permissions", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "users:read"
+                        });
+                });
+
+            modelBuilder.Entity("TradeUp.Domain.Core.Entities.Users.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("roles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Registered"
+                        });
+                });
+
+            modelBuilder.Entity("TradeUp.Domain.Core.Entities.Users.RolePermission", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PermissionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoleId", "PermissionId");
+
+                    b.ToTable("role_permissions", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            RoleId = 1,
+                            PermissionId = 1
+                        });
+                });
+
+            modelBuilder.Entity("TradeUp.Domain.Core.Entities.Users.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -73,12 +161,10 @@ namespace TradeUp.Infrastructure.Migrations
 
                     b.Property<string>("IdentityId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -89,19 +175,43 @@ namespace TradeUp.Infrastructure.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.HasIndex("IdentityId")
-                        .IsUnique();
-
                     b.ToTable("Users", (string)null);
+                });
+
+            modelBuilder.Entity("RoleUser", b =>
+                {
+                    b.HasOne("TradeUp.Domain.Core.Entities.Users.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TradeUp.Domain.Core.Entities.Users.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TradeUp.Domain.Core.Entities.Subscription", b =>
                 {
-                    b.HasOne("TradeUp.Domain.Core.Entities.User", null)
+                    b.HasOne("TradeUp.Domain.Core.Entities.Users.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TradeUp.Domain.Core.Entities.Users.Permission", b =>
+                {
+                    b.HasOne("TradeUp.Domain.Core.Entities.Users.Role", null)
+                        .WithMany("Permissions")
+                        .HasForeignKey("RoleId");
+                });
+
+            modelBuilder.Entity("TradeUp.Domain.Core.Entities.Users.Role", b =>
+                {
+                    b.Navigation("Permissions");
                 });
 #pragma warning restore 612, 618
         }

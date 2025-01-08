@@ -1,14 +1,9 @@
-﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TradeUp.Application.Commands.Users;
+﻿using TradeUp.Application.Commands.Users;
 using TradeUp.Application.Exceptions;
-using TradeUp.Application.Interfaces;
-using TradeUp.Domain.Core.Entities;
+using TradeUp.Domain.Core.Abstractions;
+using TradeUp.Domain.Core.Entities.Users;
 using TradeUp.Domain.Core.Interfaces.Repositories;
+using TradeUp.Application.Abstractions.Messaging;
 
 namespace TradeUp.Application.CommandHandlers.Users
 {
@@ -27,7 +22,7 @@ namespace TradeUp.Application.CommandHandlers.Users
         {
             try
             {
-                var user = User.Create(request.FirstName, request.LastName, request.Email);
+                var user = User.Create(request.Email, request.FirstName, request.LastName);
                 _userRepository.Add(user);
                 await _unitOfWork.SaveChangesAsync();
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TradeUp.Domain.Core.Entities;
+using TradeUp.Domain.Core.Entities.Users;
 
 namespace TradeUp.Infrastructure.Configurations
 {
@@ -19,16 +19,9 @@ namespace TradeUp.Infrastructure.Configurations
 
             builder.Property(user => user.Email).IsRequired();
 
-            builder.Property(u => u.IsActive)
-           .HasDefaultValue(true);
-
             builder.HasIndex(user => user.Email)
                .IsUnique();
 
-            builder.HasIndex(user => user.IdentityId).IsUnique();
-
-            builder.Property(user => user.FirstName).IsRequired();
-            builder.Property(user => user.LastName).IsRequired();
             
         }
     }

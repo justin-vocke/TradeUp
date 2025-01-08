@@ -6,9 +6,9 @@ using System.Runtime;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using TradeUp.Application.Abstractions;
 using TradeUp.Application.Configuration;
 using TradeUp.Application.DTO.AlphaVantage;
-using TradeUp.Application.Interfaces;
 
 namespace TradeUp.Infrastructure.Services
 {

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,8 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TradeUp.Application.Exceptions;
+using TradeUp.Domain.Core.Abstractions;
 using TradeUp.Domain.Core.Entities;
-using TradeUp.Domain.Core.Interfaces.Repositories;
 
 namespace TradeUp.Infrastructure
 {

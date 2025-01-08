@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TradeUp.Domain.Core.Entities
+namespace TradeUp.Domain.Core.Abstractions
 {
     public record Error(string Code, string Name)
     {

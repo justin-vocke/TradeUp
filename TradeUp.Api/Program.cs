@@ -6,12 +6,13 @@ using TradeUp.Api.Extensions;
 using TradeUp.Application;
 using TradeUp.Application.Configuration;
 using TradeUp.Application.EventHandlers;
-using TradeUp.Application.Interfaces;
+using TradeUp.Application.Abstractions.Messaging;
 using TradeUp.Domain.Core.Events;
 using TradeUp.Infrastructure;
 using TradeUp.Infrastructure.IoC;
 using TradeUp.Infrastructure.Services;
 using static System.Net.WebRequestMethods;
+using TradeUp.Application.Abstractions;
 
 var builder = WebApplication.CreateBuilder(args);
 
