@@ -9,6 +9,7 @@ using TradeUp.Application.Commands.Users;
 using TradeUp.Application.Users.GetLoggedInUser;
 using TradeUp.Domain.Core.Abstractions;
 using TradeUp.Domain.Core.Entities;
+using TradeUp.Infrastructure.Authorization;
 
 namespace TradeUp.Api.Controllers.Users
 {
@@ -66,7 +67,7 @@ namespace TradeUp.Api.Controllers.Users
         }
 
         [HttpGet("me")]
-        [Authorize(Roles = Roles.Registered)]
+        [HasPermission(Permissions.UsersRead)]
         public async Task<IActionResult> GetLoggedInUser(CancellationToken cancellationToken)
         {
             var query = new GetLoggedInUserQuery();

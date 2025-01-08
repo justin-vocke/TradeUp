@@ -17,6 +17,7 @@ using IAuthenticationService = TradeUp.Application.Abstractions.IAuthenticationS
 using TradeUp.Application.Abstractions.Data;
 using TradeUp.Infrastructure.Data;
 using TradeUp.Application.Abstractions.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TradeUp.Infrastructure
 {
@@ -85,6 +86,10 @@ namespace TradeUp.Infrastructure
             services.AddScoped<AuthorizationService>();
 
             services.AddTransient<IClaimsTransformation, CustomClaimsTransformation>();
+
+            services.AddTransient<IAuthorizationHandler, PermissionAuthorizationHandler>();
+
+            services.AddTransient<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
         }
     }
 }
