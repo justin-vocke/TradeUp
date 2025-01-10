@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TradeUp.Application.Abstractions.Behaviors;
 
 namespace TradeUp.Application
 {
@@ -14,6 +15,8 @@ namespace TradeUp.Application
             services.AddMediatR(configuration =>
             {
                 configuration.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
+
+                configuration.AddOpenBehavior(typeof(LoggingBehavior<,>));
 
             });
 
