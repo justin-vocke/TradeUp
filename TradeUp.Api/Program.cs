@@ -13,10 +13,12 @@ using TradeUp.Infrastructure.IoC;
 using TradeUp.Infrastructure.Services;
 using static System.Net.WebRequestMethods;
 using TradeUp.Application.Abstractions;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Host.UseSerilog((context, configuration) => 
+    configuration.ReadFrom.Configuration(context.Configuration));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -63,6 +65,10 @@ void ConfigureEventBus(IApplicationBuilder app)
 }
 
 app.UseHttpsRedirection();
+
+app.UseRequestContextLogging();
+
+app.UseSerilogRequestLogging();
 
 app.UseAuthentication();
 

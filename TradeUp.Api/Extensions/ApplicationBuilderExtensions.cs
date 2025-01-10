@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TradeUp.Api.Middleware;
 using TradeUp.Infrastructure;
 
 namespace TradeUp.Api.Extensions
@@ -12,6 +13,12 @@ namespace TradeUp.Api.Extensions
             context.Database.Migrate();
         }
 
-        
+        public static IApplicationBuilder UseRequestContextLogging(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<RequestContextLoggingMiddleware>();
+
+            return app;
+        }
+
     }
 }
