@@ -32,6 +32,7 @@ namespace TradeUp.Infrastructure
             AddAuthentication(services, configuration);
             AddAuthorization(services);
             AddCaching(services, configuration);
+            AddHealthChecks(services, configuration);
 
             return services;
         }
@@ -104,6 +105,14 @@ namespace TradeUp.Infrastructure
             services.AddStackExchangeRedisCache(options => options.Configuration = connectionString);
 
             services.AddSingleton<ICacheService, CacheService>();
+        }
+
+        private static void AddHealthChecks(IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddHealthChecks()
+                .AddSqlServer(configuration.GetConnectionString("DefaultConnection")!)
+                .AddRedis(configuration.GetConnectionString("Cache")!)
+                .AddUrlGroup(new Uri(configuration["KeyCloak:BaseUrl"]!), HttpMethod.Get, "keycloak");
         }
     }
 }
