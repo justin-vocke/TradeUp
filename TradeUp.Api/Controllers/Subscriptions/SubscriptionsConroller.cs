@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TradeUp.Application.Commands.Subscriptions;
+using TradeUp.Application.Queries.Subscriptions.GetSubscriptions;
 using TradeUp.Domain.Core.Interfaces.Repositories;
 
 namespace TradeUp.Api.Controllers.Subscriptions
@@ -26,6 +27,18 @@ namespace TradeUp.Api.Controllers.Subscriptions
         {
             var sub = await _subscriptionRepository.GetByIdAsync(id);
             return Ok(sub);
+        }
+
+        [HttpGet("GetSubscriptions")]
+        public async Task<IActionResult> GetSubscriptions(CancellationToken cancellationToken)
+        {
+            var request = new GetSubscriptionsQuery();
+            var result = await _sender.Send(request, cancellationToken);
+            if (result.IsFailure)
+            {
+                return BadRequest(result.Error);
+            }
+            return Ok(result);
         }
 
         [HttpPost]

@@ -17,6 +17,7 @@ namespace TradeUp.Application
                 configuration.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
 
                 configuration.AddOpenBehavior(typeof(LoggingBehavior<,>));
+                configuration.AddOpenBehavior(typeof(QueryCachingBehavior<,>));
 
             });
 
