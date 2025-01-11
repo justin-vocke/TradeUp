@@ -18,6 +18,8 @@ using TradeUp.Application.Abstractions.Data;
 using TradeUp.Infrastructure.Data;
 using TradeUp.Application.Abstractions.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using TradeUp.Application.Abstractions.Caching;
+using TradeUp.Infrastructure.Caching;
 
 namespace TradeUp.Infrastructure
 {
@@ -29,6 +31,7 @@ namespace TradeUp.Infrastructure
             AddPersistence(services, configuration);
             AddAuthentication(services, configuration);
             AddAuthorization(services);
+            AddCaching(services, configuration);
 
             return services;
         }
@@ -90,6 +93,17 @@ namespace TradeUp.Infrastructure
             services.AddTransient<IAuthorizationHandler, PermissionAuthorizationHandler>();
 
             services.AddTransient<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
+        }
+
+        private static void AddCaching(IServiceCollection services, IConfiguration configuration)
+        {
+            var connectionString =
+                            configuration.GetConnectionString("Cache") ??
+                            throw new ArgumentNullException(nameof(configuration));
+
+            services.AddStackExchangeRedisCache(options => options.Configuration = connectionString);
+
+            services.AddSingleton<ICacheService, CacheService>();
         }
     }
 }

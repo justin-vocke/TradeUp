@@ -13,7 +13,7 @@ namespace TradeUp.Api.Middleware
             _next = next;
         }
 
-        public async Task InvokceAsync(HttpContext httpContext)
+        public async Task InvokeAsync(HttpContext httpContext)
         {
             using (LogContext.PushProperty("CorrelationId", GetCorrelationId(httpContext)))
             {
