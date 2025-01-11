@@ -7,7 +7,7 @@ using static TradeUp.Domain.Core.Entities.Subscription;
 
 namespace TradeUp.Application.Queries.Subscriptions.GetSubscriptions
 {
-    internal class GetSubscriptionsResponse
+    public sealed class GetSubscriptionsResponse
     {
         public decimal Threshold { get; init; }
         public string TickerSymbol { get; init; }

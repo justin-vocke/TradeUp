@@ -9,7 +9,7 @@ using TradeUp.Domain.Core.Entities;
 
 namespace TradeUp.Application.Queries.Subscriptions.GetSubscriptions
 {
-    public sealed record GetSubscriptionsQuery : ICachedQuery<IReadOnlyList<Subscription>>
+    public sealed record GetSubscriptionsQuery : ICachedQuery<IReadOnlyList<GetSubscriptionsResponse>>
     {
         public string CacheKey => $"subscriptions:all";
 
