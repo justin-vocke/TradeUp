@@ -14,6 +14,11 @@ using TradeUp.Infrastructure.Services;
 using static System.Net.WebRequestMethods;
 using TradeUp.Application.Abstractions;
 using Serilog;
+using TradeUp.Application.Abstractions.Data;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Dapper;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using HealthChecks.UI.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +51,7 @@ void RegisterServices(IServiceCollection services, IConfiguration configuration)
 
 }
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -76,4 +82,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapHealthChecks("health", new HealthCheckOptions
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
+
 app.Run();
+
+
