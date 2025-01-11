@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Asp.Versioning;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +10,8 @@ using TradeUp.Domain.Core.Interfaces.Repositories;
 namespace TradeUp.Api.Controllers.Subscriptions
 {
     [Authorize]
-    [Route("api/subscriptions")]
+    [ApiVersion(ApiVersions.V1)]
+    [Route("api/v{version:apiVersion}/subscriptions")]
     [ApiController]
     public class SubscriptionsConroller : ControllerBase
     {

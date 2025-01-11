@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TradeUp.Application.Abstractions;
 using TradeUp.Domain.Core.Entities;
 
 namespace TradeUp.Api.Controllers.Stocks
 {
-    [Route("api/stocks")]
+    [ApiVersion(ApiVersions.V1)]
+    [Route("api/v{version:apiVersion}/stocks")]
     [ApiController]
     public class StocksController : ControllerBase
     {
