@@ -20,6 +20,7 @@ using TradeUp.Application.Abstractions.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using TradeUp.Application.Abstractions.Caching;
 using TradeUp.Infrastructure.Caching;
+using Asp.Versioning;
 
 namespace TradeUp.Infrastructure
 {
@@ -33,6 +34,7 @@ namespace TradeUp.Infrastructure
             AddAuthorization(services);
             AddCaching(services, configuration);
             AddHealthChecks(services, configuration);
+            AddApiVersioning(services);
 
             return services;
         }
@@ -113,6 +115,23 @@ namespace TradeUp.Infrastructure
                 .AddSqlServer(configuration.GetConnectionString("DefaultConnection")!)
                 .AddRedis(configuration.GetConnectionString("Cache")!)
                 .AddUrlGroup(new Uri(configuration["KeyCloak:BaseUrl"]!), HttpMethod.Get, "keycloak");
+        }
+
+        private static void AddApiVersioning(IServiceCollection services)
+        {
+            services
+                .AddApiVersioning(options =>
+                {
+                    options.DefaultApiVersion = new ApiVersion(1);
+                    options.ReportApiVersions = true;
+                    options.ApiVersionReader = new UrlSegmentApiVersionReader();
+                })
+                .AddMvc()
+                .AddApiExplorer(options =>
+                {
+                    options.GroupNameFormat = "'v'V";
+                    options.SubstituteApiVersionInUrl = true;
+                });
         }
     }
 }

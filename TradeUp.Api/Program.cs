@@ -19,6 +19,8 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Dapper;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
+using TradeUp.Api.OpenApi;
+using Asp.Versioning.ApiExplorer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,6 +53,7 @@ void RegisterServices(IServiceCollection services, IConfiguration configuration)
 
 }
 
+builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
 var app = builder.Build();
 
@@ -58,7 +61,15 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        foreach (ApiVersionDescription description in app.DescribeApiVersions())
+        {
+            string url = $"/swagger/{description.GroupName}/swagger.json";
+            string name = description.GroupName.ToUpperInvariant();
+            options.SwaggerEndpoint(url, name);
+        }
+    });
     app.ApplyMigrations();
 }
 

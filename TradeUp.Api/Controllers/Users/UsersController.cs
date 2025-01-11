@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Asp.Versioning;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,8 @@ using TradeUp.Infrastructure.Authorization;
 
 namespace TradeUp.Api.Controllers.Users
 {
-    [Route("api/users")]
+    [ApiVersion(ApiVersions.V1)]
+    [Route("api/v{version:apiVersion}/users")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -77,6 +79,7 @@ namespace TradeUp.Api.Controllers.Users
             return Ok(result.Value);
             
         }
+
 
         [HttpPost]
         public async Task<IActionResult> CreateUser(CreateUserRequest request)
