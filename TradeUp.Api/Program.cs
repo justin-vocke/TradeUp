@@ -27,6 +27,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((context, configuration) => 
     configuration.ReadFrom.Configuration(context.Configuration));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("EnableCORS", builder =>
+    {
+        builder.WithOrigins().AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin => true) // allow any origin
+       .AllowCredentials().Build();
+    });
+});
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
@@ -71,6 +80,7 @@ if (app.Environment.IsDevelopment())
         }
     });
     app.ApplyMigrations();
+    app.UseCors("EnableCORS");
 }
 
 ConfigureEventBus(app);
