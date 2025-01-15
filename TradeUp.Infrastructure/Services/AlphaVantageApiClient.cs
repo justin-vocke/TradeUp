@@ -24,7 +24,7 @@ namespace TradeUp.Infrastructure.Services
             _alphaVantageConfiguration = alphaVantageConfiguration.Value;
             _httpClient.BaseAddress = new Uri(_alphaVantageConfiguration.BaseUrl);
         }
-        public async Task<IStockApiResponse> GetStockInfoAsync(string tickerSymbol)
+        public async Task<IStockApiResponseDto> GetStockInfoAsync(string tickerSymbol)
         {
             try
             {
@@ -36,11 +36,11 @@ namespace TradeUp.Infrastructure.Services
                 Console.WriteLine(_httpClient.BaseAddress + $"?function=GLOBAL_QUOTE&symbol={tickerSymbol}&apikey={_alphaVantageConfiguration.ApiKey}");
                 var content = await response.Content.ReadAsStringAsync();
                 var stockData = JsonSerializer.Deserialize<AlphaVantageApiResponse>(content);
-
+                var stockDataDto = stockData.ToDto();
                 // Extract the stock price (adjust the path based on the API's JSON response structure)
                 // priceString = stockData?.GlobalQuote?.Price;
                 //return decimal.TryParse(priceString, out var price) ? price : null;
-                return stockData;
+                return stockDataDto;
             }
             catch (Exception ex)
             {

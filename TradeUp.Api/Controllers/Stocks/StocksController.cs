@@ -30,6 +30,7 @@ namespace TradeUp.Api.Controllers.Stocks
         public async Task<IActionResult> GetStockInfo([FromBody] string ticker)
         {
             var result = await _stockApiClient.GetStockInfoAsync(ticker);
+            
             return Ok(result);
         }
     }

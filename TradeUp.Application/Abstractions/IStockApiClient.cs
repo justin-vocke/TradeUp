@@ -12,7 +12,7 @@ namespace TradeUp.Application.Abstractions
     
     public interface IStockApiClient
     {
-        Task<IStockApiResponse> GetStockInfoAsync(string tickerSymbol);
+        Task<IStockApiResponseDto> GetStockInfoAsync(string tickerSymbol);
     }
     
 }
