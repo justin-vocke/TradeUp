@@ -8,33 +8,35 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using TradeUp.Application.Abstractions;
 using TradeUp.Application.Configuration;
+using TradeUp.Application.DTO;
 using TradeUp.Application.DTO.AlphaVantage;
+using TradeUp.Application.DTO.FinnHub;
 
 namespace TradeUp.Infrastructure.Services
 {
-    public class StockApiClient : IStockApiClient
+    public class FinnHubApiClient : IStockApiClient
     {
         private readonly HttpClient _httpClient;
-        private readonly AlphaVantageConfiguration _alphaVantageConfiguration;
+        private readonly FinnHubConfiguration _finnHubConfiguration;
 
-        public StockApiClient(HttpClient httpClient, IOptions<AlphaVantageConfiguration> alphaVantageConfiguration)
+        public FinnHubApiClient(HttpClient httpClient, IOptions<FinnHubConfiguration> finnHubConfiguration)
         {
             _httpClient = httpClient;
-            _alphaVantageConfiguration = alphaVantageConfiguration.Value;
-            _httpClient.BaseAddress = new Uri(_alphaVantageConfiguration.BaseUrl);
+            _finnHubConfiguration = finnHubConfiguration.Value;
+            _httpClient.BaseAddress = new Uri(_finnHubConfiguration.BaseUrl);
         }
-        public async Task<StockApiResponse> GetStockInfoAsync(string tickerSymbol)
+        public async Task<IStockApiResponse> GetStockInfoAsync(string tickerSymbol)
         {
             try
             {
                 // Add the symbol as the query parameter
-                var response = await _httpClient.GetAsync($"?function=GLOBAL_QUOTE&symbol={tickerSymbol}&apikey={_alphaVantageConfiguration.ApiKey}");
-                var address = _httpClient.BaseAddress + $"?function=GLOBAL_QUOTE&symbol={tickerSymbol}&apikey={_alphaVantageConfiguration.ApiKey}";
+                var response = await _httpClient.GetAsync($"quote?symbol={tickerSymbol}&token={_finnHubConfiguration.ApiKey}");
+                var address = _httpClient.BaseAddress + $"quote?symbol={tickerSymbol}&token={_finnHubConfiguration.ApiKey}";
 
                 response.EnsureSuccessStatusCode();
-                Console.WriteLine(_httpClient.BaseAddress + $"?function=GLOBAL_QUOTE&symbol={tickerSymbol}&apikey={_alphaVantageConfiguration.ApiKey}");
+                Console.WriteLine(_httpClient.BaseAddress + $"quote?symbol={tickerSymbol}&token={_finnHubConfiguration.ApiKey}");
                 var content = await response.Content.ReadAsStringAsync();
-                var stockData = JsonSerializer.Deserialize<StockApiResponse>(content);
+                var stockData = JsonSerializer.Deserialize<FinnHubStockApiResponse>(content);
 
                 // Extract the stock price (adjust the path based on the API's JSON response structure)
                 // priceString = stockData?.GlobalQuote?.Price;
