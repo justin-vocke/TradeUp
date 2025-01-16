@@ -26,8 +26,8 @@ namespace TradeUp.Api.Controllers.Stocks
             return Ok();
         }
 
-        [HttpPost("GetStockInfo")]
-        public async Task<IActionResult> GetStockInfo([FromBody] string ticker)
+        [HttpGet("GetStockInfo")]
+        public async Task<IActionResult> GetStockInfo([FromQuery] string ticker)
         {
             var result = await _stockApiClient.GetStockInfoAsync(ticker);
             

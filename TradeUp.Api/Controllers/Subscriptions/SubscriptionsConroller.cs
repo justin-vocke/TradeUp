@@ -3,8 +3,10 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TradeUp.Application.Abstractions.Authentication;
 using TradeUp.Application.Commands.Subscriptions;
 using TradeUp.Application.Queries.Subscriptions.GetSubscriptions;
+using TradeUp.Application.Queries.Subscriptions.GetSubscriptionsByUserId;
 using TradeUp.Domain.Core.Interfaces.Repositories;
 
 namespace TradeUp.Api.Controllers.Subscriptions
@@ -17,11 +19,13 @@ namespace TradeUp.Api.Controllers.Subscriptions
     {
         private readonly ISender _sender;
         private readonly ISubscriptionRepository _subscriptionRepository;
+        private readonly IUserContext _userContext;
 
-        public SubscriptionsConroller(ISender sender, ISubscriptionRepository subscriptionRepository)
+        public SubscriptionsConroller(ISender sender, ISubscriptionRepository subscriptionRepository, IUserContext userContext)
         {
             _sender = sender;
             _subscriptionRepository = subscriptionRepository;
+            _userContext = userContext;
         }
 
         [HttpGet("GetSubscription")]
@@ -31,11 +35,17 @@ namespace TradeUp.Api.Controllers.Subscriptions
             return Ok(sub);
         }
 
-        [HttpGet("GetSubscriptions")]
+        [HttpGet("GetSubscriptionsForUser")]
         public async Task<IActionResult> GetSubscriptions(CancellationToken cancellationToken)
         {
-            var request = new GetSubscriptionsQuery();
+            var userId = _userContext.UserId.ToString();
+            if(userId is  null) {
+                return BadRequest();
+            }
+
+            var request = new GetSubscriptionsByUserIdQuery(userId);
             var result = await _sender.Send(request, cancellationToken);
+
             if (result.IsFailure)
             {
                 return BadRequest(result.Error);
