@@ -37,7 +37,7 @@ namespace TradeUp.Infrastructure.Services
                 Console.WriteLine(_httpClient.BaseAddress + $"quote?symbol={tickerSymbol}&token={_finnHubConfiguration.ApiKey}");
                 var content = await response.Content.ReadAsStringAsync();
                 var stockData = JsonSerializer.Deserialize<FinnHubStockApiResponse>(content);
-                var stockDataDto = stockData.ToDto();
+                var stockDataDto = stockData.ToDto(tickerSymbol);
                 // Extract the stock price (adjust the path based on the API's JSON response structure)
                 // priceString = stockData?.GlobalQuote?.Price;
                 //return decimal.TryParse(priceString, out var price) ? price : null;

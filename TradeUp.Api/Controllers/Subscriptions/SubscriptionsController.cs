@@ -15,13 +15,13 @@ namespace TradeUp.Api.Controllers.Subscriptions
     [ApiVersion(ApiVersions.V1)]
     [Route("api/v{version:apiVersion}/subscriptions")]
     [ApiController]
-    public class SubscriptionsConroller : ControllerBase
+    public class SubscriptionsController : ControllerBase
     {
         private readonly ISender _sender;
         private readonly ISubscriptionRepository _subscriptionRepository;
         private readonly IUserContext _userContext;
 
-        public SubscriptionsConroller(ISender sender, ISubscriptionRepository subscriptionRepository, IUserContext userContext)
+        public SubscriptionsController(ISender sender, ISubscriptionRepository subscriptionRepository, IUserContext userContext)
         {
             _sender = sender;
             _subscriptionRepository = subscriptionRepository;
@@ -58,9 +58,10 @@ namespace TradeUp.Api.Controllers.Subscriptions
             CreateSubscriptionRequest request,
             CancellationToken cancellationToken)
         {
+            var userId = _userContext.UserId;
             var command = new CreateSubscriptionCommand
             (
-                request.Id,
+                userId,
                 request.Email,
                 request.Threshold,
                 request.Ticker,

@@ -8,6 +8,7 @@ namespace TradeUp.Application.DTO.FinnHub
 {
     public class FinnHubStockDto : IStockApiResponseDto
     {
+        public string Ticker { get; set; }
         public decimal Current { get; set; }
         public decimal High { get; set; }
         public decimal PercentChange { get; set; }

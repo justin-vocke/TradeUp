@@ -8,10 +8,11 @@ namespace TradeUp.Application.DTO.FinnHub
 {
     public static class FinnHubStockApiResponseExtensions
     {
-        public static FinnHubStockDto ToDto(this FinnHubStockApiResponse apiResponse)
+        public static FinnHubStockDto ToDto(this FinnHubStockApiResponse apiResponse, string ticker)
         {
             return new FinnHubStockDto
             {
+                Ticker = ticker,
                 Current = apiResponse.Current,
                 High = apiResponse.High,
                 PercentChange = apiResponse.PercentChange,
