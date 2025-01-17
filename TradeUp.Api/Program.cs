@@ -43,14 +43,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddHttpClient<IStockApiClient, StockApiClient>(client =>
+//builder.Services.AddHttpClient<IStockApiClient, AlphaVantageApiClient>(client =>
+//{
+//    client.DefaultRequestHeaders.Add("Accept", "application/json");
+//    client.DefaultRequestHeaders.Add("User-Agent", "TradeUp"); // Optional, but good practice for APIs
+    
+//});
+builder.Services.Configure<AlphaVantageConfiguration>(builder.Configuration.GetSection("AlphaVantage"));
+
+builder.Services.AddHttpClient<IStockApiClient, FinnHubApiClient>(client =>
 {
     client.DefaultRequestHeaders.Add("Accept", "application/json");
     client.DefaultRequestHeaders.Add("User-Agent", "TradeUp"); // Optional, but good practice for APIs
-    
-});
-builder.Services.Configure<AlphaVantageConfiguration>(builder.Configuration.GetSection("AlphaVantage"));
 
+});
+builder.Services.Configure<FinnHubConfiguration>(builder.Configuration.GetSection("FinnHub"));
 
 RegisterServices(builder.Services, builder.Configuration);
 

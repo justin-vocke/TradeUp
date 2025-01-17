@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace TradeUp.Application.DTO.AlphaVantage
 {
-    public class StockApiResponse
+    public class AlphaVantageApiResponse : IStockApiResponse
     {
         [JsonPropertyName("Global Quote")]
         public GlobalQuote GlobalQuote { get; set; }
+        public long TimeStamp { get; set; } = default;
     }
 }

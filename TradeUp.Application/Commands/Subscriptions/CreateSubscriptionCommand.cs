@@ -11,7 +11,7 @@ using static TradeUp.Domain.Core.Entities.Subscription;
 namespace TradeUp.Application.Commands.Subscriptions
 {
     public sealed record CreateSubscriptionCommand(Guid UserId, string Email,
-        decimal Threshold, string Ticker, ThresholdPosition Position) : ICommand<Guid>;
+        decimal Threshold, string Ticker, ThresholdPosition Position) : ICommand<CreateSubscriptionResponse>;
     
     
 }

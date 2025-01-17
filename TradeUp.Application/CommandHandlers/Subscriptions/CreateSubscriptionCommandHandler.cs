@@ -13,7 +13,7 @@ using TradeUp.Application.Abstractions.Messaging;
 
 namespace TradeUp.Application.CommandHandlers.Subscriptions
 {
-    internal class CreateSubscriptionCommandHandler : ICommandHandler<CreateSubscriptionCommand, Guid>
+    internal class CreateSubscriptionCommandHandler : ICommandHandler<CreateSubscriptionCommand, CreateSubscriptionResponse>
     {
         private readonly ISubscriptionRepository _subscriptionRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -24,7 +24,7 @@ namespace TradeUp.Application.CommandHandlers.Subscriptions
         }
 
 
-        public async Task<Result<Guid>> Handle(CreateSubscriptionCommand request, CancellationToken cancellationToken)
+        public async Task<Result<CreateSubscriptionResponse>> Handle(CreateSubscriptionCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -34,11 +34,19 @@ namespace TradeUp.Application.CommandHandlers.Subscriptions
                 _subscriptionRepository.Add(subscription);
                 await _unitOfWork.SaveChangesAsync();
 
-                return subscription.Id;
+                var newSubscriptionResponse = new CreateSubscriptionResponse
+                {
+                    Threshold = request.Threshold,
+                    Position = request.Position,
+                    TickerSymbol = request.Ticker,
+                    Email = request.Email,
+                    Id = subscription.Id
+                };
+                return newSubscriptionResponse;
             }
             catch (ConcurrencyException)
             {
-                return Result.Failure<Guid>(new Error("Subscription.Overlap", "Error processing new stock subsription"));
+                return Result.Failure<CreateSubscriptionResponse>(new Error("Subscription.Overlap", "Error processing new stock subsription"));
             }
         }
     }
