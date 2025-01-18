@@ -26,5 +26,10 @@ namespace TradeUp.Infrastructure.Repositories
         {
             return await DbContext.Set<T>().FirstOrDefaultAsync();
         }
+
+        public void Update(T entity)
+        {
+            DbContext.Update(entity);
+        }
     }
 }

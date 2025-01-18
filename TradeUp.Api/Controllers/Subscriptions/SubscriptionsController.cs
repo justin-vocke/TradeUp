@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning;
+using Azure.Core;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -62,6 +63,30 @@ namespace TradeUp.Api.Controllers.Subscriptions
             var command = new CreateSubscriptionCommand
             (
                 userId,
+                request.Email,
+                request.Threshold,
+                request.Ticker,
+                request.Position
+            );
+
+            var result = await _sender.Send(command, cancellationToken);
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result.Error);
+            }
+            return Ok(result);
+        }
+
+        public async Task<IActionResult> Update(Guid subscriptionId, 
+            [FromBody] UpdateSubscriptionRequest request,
+            CancellationToken cancellationToken)
+        {
+            var userId = _userContext.UserId;
+            var command = new UpdateSubscriptionCommand
+            (
+                userId,
+                request.Id,
                 request.Email,
                 request.Threshold,
                 request.Ticker,
