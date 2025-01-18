@@ -56,56 +56,51 @@ The Stock Price Notification System follows a modular architecture with clear se
 Diagram
 
 
-Getting Started
+## Getting Started
 
-Prerequisites
+### Prerequisites
 
-.NET Core SDK
+- .NET Core SDK
 
-Node.js and npm
+- Node.js and npm
 
-RabbitMQ
+- RabbitMQ
 
-Docker (optional for containerized deployment)
+- Docker (optional for containerized deployment)
 
-Setup
+### Setup
 
-Clone the repository:
-
+1. Clone the repository:
+```bash
 git clone https://github.com/yourusername/stock-notification-system.git
 cd stock-notification-system
+```
 
-Set up the backend:
-
+2. Set up the backend:
+```bash
 cd backend
 dotnet restore
 dotnet run
+```
 
-Set up the frontend:
 
-cd frontend
-npm install
-npm start
-
-Start RabbitMQ (if not already running):
-
+3. Start RabbitMQ (if not already running):
+```bash
 docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:management
+```
+4. Access the application:
 
-Access the application:
+- API: http://localhost:5000
 
-Frontend: http://localhost:3000
+## Usage
 
-API: http://localhost:5000
+1. Sign up and log in to the application.
 
-Usage
+2. Add stocks to your watchlist.
 
-Sign up and log in to the application.
+3. Receive real-time notifications about price changes.
 
-Add stocks to your watchlist.
-
-Receive real-time notifications about price changes.
-
-Manage your notification preferences.
+4. Manage your notification preferences.
 
 Testing
 
