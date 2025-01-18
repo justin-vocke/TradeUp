@@ -16,4 +16,7 @@
     <ProjectReference Include="..\TradeUp.Domain.Core\TradeUp.Domain.Core.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="TradeUp.Application.UnitTests"/>
+	</ItemGroup>
 </Project>
