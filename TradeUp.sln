@@ -23,9 +23,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeUp.Application", "Trad
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure.Ioc", "Infrastructure.Ioc", "{E0BF56DC-40BA-454C-B34C-E30BA1D108E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Infrastructure.IoC", "TradeUp.Infrastructure.IoC\TradeUp.Infrastructure.IoC.csproj", "{994C9E3D-E09C-486A-B716-B40DD8995944}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeUp.Infrastructure.IoC", "TradeUp.Infrastructure.IoC\TradeUp.Infrastructure.IoC.csproj", "{994C9E3D-E09C-486A-B716-B40DD8995944}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{4A4DB0DF-AC1C-45E2-8472-98BC1FD7417F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B1858560-A497-4E76-AAAA-3D97AF5C787F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Domain.UnitTests", "..\TradeUp.Domain.UnitTests\TradeUp.Domain.UnitTests.csproj", "{3DA7822F-BCA0-4C11-A225-31F71E7BD6CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Application.UnitTests", "..\TradeUp.Application.UnitTests\TradeUp.Application.UnitTests.csproj", "{6CB5058B-3D89-4A41-80B0-97D3D10F1F13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +75,14 @@ Global
 		{4A4DB0DF-AC1C-45E2-8472-98BC1FD7417F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A4DB0DF-AC1C-45E2-8472-98BC1FD7417F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A4DB0DF-AC1C-45E2-8472-98BC1FD7417F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DA7822F-BCA0-4C11-A225-31F71E7BD6CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DA7822F-BCA0-4C11-A225-31F71E7BD6CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DA7822F-BCA0-4C11-A225-31F71E7BD6CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DA7822F-BCA0-4C11-A225-31F71E7BD6CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CB5058B-3D89-4A41-80B0-97D3D10F1F13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CB5058B-3D89-4A41-80B0-97D3D10F1F13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CB5058B-3D89-4A41-80B0-97D3D10F1F13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CB5058B-3D89-4A41-80B0-97D3D10F1F13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +91,8 @@ Global
 		{5088D570-31D4-4DA0-8B51-A1B8447C939B} = {992C455B-FCB4-4FC2-B2FD-873577C30DD6}
 		{0922442E-9071-44C8-B18B-D82D98F69FA2} = {28557FDF-BB05-4F0C-A9A1-FDAA63E6CB17}
 		{994C9E3D-E09C-486A-B716-B40DD8995944} = {E0BF56DC-40BA-454C-B34C-E30BA1D108E3}
+		{3DA7822F-BCA0-4C11-A225-31F71E7BD6CA} = {B1858560-A497-4E76-AAAA-3D97AF5C787F}
+		{6CB5058B-3D89-4A41-80B0-97D3D10F1F13} = {B1858560-A497-4E76-AAAA-3D97AF5C787F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F9B118AD-3128-4F60-8D3C-6B44EB10A622}
