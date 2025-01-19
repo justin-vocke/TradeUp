@@ -33,7 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeUp.Domain.UnitTests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeUp.Application.UnitTests", "..\TradeUp.Application.UnitTests\TradeUp.Application.UnitTests.csproj", "{6CB5058B-3D89-4A41-80B0-97D3D10F1F13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeUp.Application.IntegrationTests", "..\TradeUp.Application.IntegrationTests\TradeUp.Application.IntegrationTests.csproj", "{85A68E32-B678-48CF-9764-5AD8DC4F29DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TradeUp.Application.IntegrationTests", "..\TradeUp.Application.IntegrationTests\TradeUp.Application.IntegrationTests.csproj", "{85A68E32-B678-48CF-9764-5AD8DC4F29DD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{26E15679-C50D-4503-80FA-C464C433C7FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
