@@ -63,7 +63,7 @@ RegisterServices(builder.Services, builder.Configuration);
 
 void RegisterServices(IServiceCollection services, IConfiguration configuration)
 {
-    DependencyContainer.RegisterServices(services);
+    DependencyContainer.RegisterServices(services, configuration);
     builder.Services.RegisterApplicationServices();
     builder.Services.RegisterInfrastructureServices(configuration);
 
@@ -88,6 +88,7 @@ if (app.Environment.IsDevelopment())
     });
     app.ApplyMigrations();
     app.UseCors("EnableCORS");
+    app.SeedData();
 }
 
 ConfigureEventBus(app);
@@ -117,4 +118,6 @@ app.MapHealthChecks("health", new HealthCheckOptions
 
 app.Run();
 
-
+//Workaround for integration test entry point
+//TODO: Do proper endpoint entry for integration test
+public partial class Program;
