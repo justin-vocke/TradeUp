@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using RabbitMQ.Client;
@@ -20,20 +21,21 @@ using Testcontainers.Redis;
 using Tradeup.Domain.Core.Bus;
 using Tradeup.Infrastructure.Authentication;
 using Tradeup.Infrastructure.Bus;
+using TradeUp.Api;
 using TradeUp.Application.Abstractions.Data;
 using TradeUp.Infrastructure;
 using TradeUp.Infrastructure.Data;
 
 namespace TradeUp.Application.IntegrationTests.Infrastructure
 {
-    public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsyncLifetime
+    public class IntegrationTestWebAppFactory : WebApplicationFactory<IApiAssemblyMarker>, IAsyncLifetime
     {
-
-        _configuration = new ConfigurationBuilder()
+        private static readonly IConfiguration _configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.development.json", optional: true, reloadOnChange: true)
             .AddUserSecrets<Program>() // For user secrets in development
             .AddEnvironmentVariables() // For environment variables
             .Build();
+
 
         private readonly MsSqlContainer _dbContainer = new MsSqlBuilder()
             .WithImage("mcr.microsoft.com/mssql/server:2019-latest")
@@ -77,6 +79,8 @@ namespace TradeUp.Application.IntegrationTests.Infrastructure
 
                 services.Configure<RedisCacheOptions>(redisCacheOptions =>
                 redisCacheOptions.Configuration = _redisContainer.GetConnectionString());
+
+                services.RemoveAll(typeof(IEventBus));
 
                 services.AddSingleton<IEventBus, RabbitMQBus>(sp =>
                 {

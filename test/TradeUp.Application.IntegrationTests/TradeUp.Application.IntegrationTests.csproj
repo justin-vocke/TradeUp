@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TradeUp\TradeUp.Api\TradeUp.Api.csproj" />
+    <ProjectReference Include="..\..\TradeUp.Api\TradeUp.Api.csproj" />
   </ItemGroup>
 
   <ItemGroup>

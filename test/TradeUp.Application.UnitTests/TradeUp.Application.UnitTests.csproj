@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TradeUp\TradeUp.Application\TradeUp.Application.csproj" />
+    <ProjectReference Include="..\..\TradeUp.Application\TradeUp.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -11,10 +11,11 @@ namespace TradeUp.Application.IntegrationTests.Subscriptions
 {
     public class SearchSubscriptionsTests : BaseIntegrationTest
     {
+        private readonly HttpClient _apiClient;
         public SearchSubscriptionsTests(IntegrationTestWebAppFactory factory)
             :base(factory)
         {
-            
+            _apiClient = factory.CreateClient();
         }
 
         [Fact]
