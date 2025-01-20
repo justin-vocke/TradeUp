@@ -25,7 +25,7 @@ namespace TradeUp.Infrastructure.Services
             _finnHubConfiguration = finnHubConfiguration.Value;
             _httpClient.BaseAddress = new Uri(_finnHubConfiguration.BaseUrl);
         }
-        public async Task<IStockApiResponseDto> GetStockInfoAsync(string tickerSymbol)
+        public async Task<FinnHubStockDto> GetStockInfoAsync(string tickerSymbol)
         {
             try
             {

@@ -36,7 +36,10 @@ namespace TradeUp.Application.Services
             var firstTicker = tickers.FirstOrDefault();
             //get stock prices from external apip
             var stockInformation = await _stockApiClient.GetStockInfoAsync(firstTicker);
+            //below linq is for AlphaVantage response that has GlobalQuote property holding stock info
             //var subsToCheck = subscriptions.Where(x => x.TickerSymbol == stockInformation.GlobalQuote.Symbol).ToList();
+
+            var subsToCheck = subscriptions.Where(x => x.TickerSymbol == stockInformation.Ticker).ToList();
             //var subsToCheckAboveThreshold = subsToCheck.Where(x => x.Position == Subscription.ThresholdPosition.Above);
             //var subsToCheckBelowThreshold = subsToCheck.Where(x => x.Position == Subscription.ThresholdPosition.Below);
             //foreach(var sub in subsToCheckAboveThreshold)
