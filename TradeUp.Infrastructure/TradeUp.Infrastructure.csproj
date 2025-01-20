@@ -41,4 +41,7 @@
     <ProjectReference Include="..\TradeUp.Application\TradeUp.Application.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="TradeUp.Application.IntegrationTests"/>
+	</ItemGroup>
 </Project>
