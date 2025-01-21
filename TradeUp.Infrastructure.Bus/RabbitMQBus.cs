@@ -36,7 +36,7 @@ namespace Tradeup.Infrastructure.Bus
 
         public void Publish<T>(T @event) where T : Event
         {
-            using var connection = _connectionFactory.CreateConnection(); ;
+            using var connection = _connectionFactory.CreateConnection(); 
             using(var channel = connection.CreateModel())
             {
                 var eventName = @event.GetType().Name;

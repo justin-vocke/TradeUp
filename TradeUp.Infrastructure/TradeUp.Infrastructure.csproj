@@ -37,11 +37,11 @@
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\TradeUp.Application\TradeUp.Application.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="TradeUp.Application.IntegrationTests" />
+	</ItemGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="TradeUp.Application.IntegrationTests"/>
+	  <ProjectReference Include="..\TradeUp.Application\TradeUp.Application.csproj" />
 	</ItemGroup>
 </Project>
