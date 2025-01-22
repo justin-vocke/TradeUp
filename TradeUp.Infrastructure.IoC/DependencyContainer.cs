@@ -27,7 +27,8 @@ namespace TradeUp.Infrastructure.IoC
                     HostName = configuration["RabbitMQ:HostName"], // From appsettings.json or environment
                     Port = int.Parse(configuration["RabbitMQ:Port"]),
                     UserName = configuration["RabbitMQ:UserName"],
-                    Password = configuration["RabbitMQ:Password"]
+                    Password = configuration["RabbitMQ:Password"],
+                    DispatchConsumersAsync = true
                 };
                 var scopeFactory = sp.GetRequiredService<IServiceScopeFactory>();
                 return new RabbitMQBus(sp.GetRequiredService<IMediator>(), scopeFactory, factory);

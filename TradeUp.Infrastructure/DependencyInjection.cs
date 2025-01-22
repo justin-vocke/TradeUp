@@ -21,6 +21,8 @@ using Microsoft.AspNetCore.Authorization;
 using TradeUp.Application.Abstractions.Caching;
 using TradeUp.Infrastructure.Caching;
 using Asp.Versioning;
+using TradeUp.Application.Abstractions.Notifications.Email;
+using TradeUp.Infrastructure.Services.Notifications.Emails;
 
 namespace TradeUp.Infrastructure
 {
@@ -35,8 +37,17 @@ namespace TradeUp.Infrastructure
             AddCaching(services, configuration);
             AddHealthChecks(services, configuration);
             AddApiVersioning(services);
+            AddEmail(services, configuration);
 
+            
             return services;
+        }
+
+        private static void AddEmail(IServiceCollection services, IConfiguration configuration)
+        {
+            services.Configure<MailGunOptions>(configuration.GetSection("MailGun"));
+            services.AddSingleton<IEmailService, EmailService>();
+
         }
 
         private static void AddAuthentication(IServiceCollection services, IConfiguration configuration)
