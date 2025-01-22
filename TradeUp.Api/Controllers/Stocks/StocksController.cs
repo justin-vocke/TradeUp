@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TradeUp.Application.Abstractions;
+using TradeUp.Application.Abstractions.Notifications.Email;
 using TradeUp.Domain.Core.Entities;
 
 namespace TradeUp.Api.Controllers.Stocks
@@ -13,10 +14,12 @@ namespace TradeUp.Api.Controllers.Stocks
     {
         private readonly IStockService _stockService;
         private readonly IStockApiClient _stockApiClient;
-        public StocksController(IStockService stockService, IStockApiClient stockApiClient)
+        private readonly IEmailService _emailService;
+        public StocksController(IStockService stockService, IStockApiClient stockApiClient, IEmailService emailService)
         {
             _stockService = stockService;
             _stockApiClient = stockApiClient;
+            _emailService = emailService;
         }
 
         [HttpPost("CheckThresholds")]
@@ -26,6 +29,13 @@ namespace TradeUp.Api.Controllers.Stocks
             return Ok();
         }
 
+        [HttpPost("SendTestEmail")]
+        public  IActionResult SendTestEmail()
+        {
+            var response = _emailService.SendSimpleMessage();
+
+            return Ok(response);
+        }
         [HttpGet("GetStockInfo")]
         public async Task<IActionResult> GetStockInfo([FromQuery] string ticker)
         {

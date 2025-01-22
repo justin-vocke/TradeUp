@@ -19,13 +19,15 @@ namespace Tradeup.Infrastructure.Bus
         private readonly Dictionary<string, List<Type>> _handlers;
         private readonly List<Type> _eventTypes;
         private readonly IServiceScopeFactory _scopeFactory;
+        private readonly ConnectionFactory _connectionFactory;
 
-        public RabbitMQBus(IMediator mediator, IServiceScopeFactory scopeFactory)
+        public RabbitMQBus(IMediator mediator, IServiceScopeFactory scopeFactory, ConnectionFactory connectionFactory)
         {
             _mediator = mediator;
             _handlers = new Dictionary<string, List<Type>>();
             _eventTypes = new List<Type>();
             _scopeFactory = scopeFactory;
+            _connectionFactory = connectionFactory;
         }
         public Task SendCommand<T>(T command) where T : Command
         {
@@ -34,8 +36,7 @@ namespace Tradeup.Infrastructure.Bus
 
         public void Publish<T>(T @event) where T : Event
         {
-            var factory = new ConnectionFactory() { HostName = "localhost"};
-            using var connection = factory.CreateConnection(); ;
+            using var connection = _connectionFactory.CreateConnection(); 
             using(var channel = connection.CreateModel())
             {
                 var eventName = @event.GetType().Name;
@@ -78,9 +79,9 @@ namespace Tradeup.Infrastructure.Bus
 
         private void StartBasicConsume<T>() where T : Event
         {
-            var factory = new ConnectionFactory() { HostName = "rabbitmq", DispatchConsumersAsync = true };
+            //var factory = new ConnectionFactory() { HostName = "rabbitmq", DispatchConsumersAsync = true };
 
-            var connection = factory.CreateConnection();
+            var connection = _connectionFactory.CreateConnection();
             var channel = connection.CreateModel();
 
             var eventName = typeof(T).Name;
