@@ -9,7 +9,7 @@ namespace TradeUp.Application.Abstractions.Notifications.Email
 {
     public interface IEmailService
     {
-        Task SendEmailAsync(string to, string subject, string body);
+        RestResponse SendEmailAsync(string to, string subject, string body);
 
         RestResponse SendSimpleMessage();
 
