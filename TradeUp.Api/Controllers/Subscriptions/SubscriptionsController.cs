@@ -78,7 +78,8 @@ namespace TradeUp.Api.Controllers.Subscriptions
             return Ok(result);
         }
 
-        public async Task<IActionResult> Update(Guid subscriptionId, 
+        [HttpPatch]
+        public async Task<IActionResult> Update( 
             [FromBody] UpdateSubscriptionRequest request,
             CancellationToken cancellationToken)
         {
