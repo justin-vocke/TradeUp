@@ -41,5 +41,12 @@ namespace TradeUp.Infrastructure.Repositories
                 DbContext.Entry(entity).State = EntityState.Modified;
             }
         }
+
+        public void Delete(T entity)
+        {
+            
+            DbContext.Remove(entity);
+            
+        }
     }
 }

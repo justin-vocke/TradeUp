@@ -102,5 +102,21 @@ namespace TradeUp.Api.Controllers.Subscriptions
             }
             return Ok(result);
         }
+        [HttpDelete]
+        public async Task<IActionResult> Delete(
+            [FromBody] DeleteSubscriptionRequest request,
+            CancellationToken cancellationToken)
+        {
+            var userId = _userContext.UserId;
+            var command = new DeleteSubscriptionCommand(request.Id);
+
+            var result = await _sender.Send(command, cancellationToken);
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result.Error);
+            }
+            return Ok(result);
+        }
     }
 }

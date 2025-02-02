@@ -16,5 +16,6 @@ namespace TradeUp.Domain.Core.Interfaces.Repositories
         void Add(Subscription user);
 
         void Update(Subscription subscription);
+        void Delete(Subscription subscription);
     }
 }
