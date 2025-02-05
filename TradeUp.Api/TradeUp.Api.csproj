@@ -27,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TradeUp.Infrastructure.IoC\TradeUp.Infrastructure.IoC.csproj" />
     <ProjectReference Include="..\TradeUp.Infrastructure\TradeUp.Infrastructure.csproj" />
+    <ProjectReference Include="..\TradeUp.Shared\TradeUp.Shared.csproj" />
   </ItemGroup>
 
 </Project>
