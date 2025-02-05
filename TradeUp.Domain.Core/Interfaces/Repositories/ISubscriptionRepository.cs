@@ -14,5 +14,8 @@ namespace TradeUp.Domain.Core.Interfaces.Repositories
         Task<IEnumerable<string>> GetAllDistinctTickersFromSubscriptions(CancellationToken cancellationToken = default);
         Task<IEnumerable<Subscription>> GetAllSubscriptions(CancellationToken cancellationToken = default);
         void Add(Subscription user);
+
+        void Update(Subscription subscription);
+        void Delete(Subscription subscription);
     }
 }

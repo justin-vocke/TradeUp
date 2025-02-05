@@ -7,7 +7,7 @@ using static TradeUp.Domain.Core.Entities.Subscription;
 
 namespace TradeUp.Application.Commands.Subscriptions
 {
-    public sealed class CreateSubscriptionResponse : SubscriptionResponseBase
+    public sealed class UpdateSubscriptionResponse : SubscriptionResponseBase
     {
        
     }

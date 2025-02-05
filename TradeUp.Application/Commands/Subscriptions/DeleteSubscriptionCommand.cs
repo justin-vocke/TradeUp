@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static TradeUp.Domain.Core.Entities.Subscription;
+using TradeUp.Application.Abstractions.Messaging;
 
 namespace TradeUp.Application.Commands.Subscriptions
 {
-    public sealed class CreateSubscriptionResponse : SubscriptionResponseBase
-    {
-       
-    }
+    public sealed record DeleteSubscriptionCommand(Guid Id, Guid UserId) : ICommand<bool>;
+
 }

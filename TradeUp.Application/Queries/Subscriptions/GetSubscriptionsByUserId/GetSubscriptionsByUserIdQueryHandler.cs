@@ -15,12 +15,10 @@ namespace TradeUp.Application.Queries.Subscriptions.GetSubscriptionsByUserId
 {
     internal class GetSubscriptionsByUserIdQueryHandler : IQueryHandler<GetSubscriptionsByUserIdQuery, IReadOnlyList<GetSubscriptionsByUserIdResponse>>
     {
-        private readonly ISubscriptionRepository _subscriptionRepository;
         private readonly ISqlConnectionFactory _sqlConnectionFactory;
 
-        public GetSubscriptionsByUserIdQueryHandler(ISubscriptionRepository subscriptionRepository, ISqlConnectionFactory sqlConnectionFactory)
+        public GetSubscriptionsByUserIdQueryHandler( ISqlConnectionFactory sqlConnectionFactory)
         {
-            _subscriptionRepository = subscriptionRepository;
             _sqlConnectionFactory = sqlConnectionFactory;
         }
 
@@ -46,8 +44,6 @@ namespace TradeUp.Application.Queries.Subscriptions.GetSubscriptionsByUserId
                 {
                     request.UserId
                 });
-
-            //var subscriptions = await _subscriptionRepository.GetAllSubscriptions(cancellationToken);
 
             return subscriptions.ToList();
         }

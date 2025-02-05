@@ -1,0 +1,6 @@
+﻿using static TradeUp.Domain.Core.Entities.Subscription;
+
+namespace TradeUp.Api.Controllers.Subscriptions
+{
+    public sealed record DeleteSubscriptionRequest(Guid Id);
+}
