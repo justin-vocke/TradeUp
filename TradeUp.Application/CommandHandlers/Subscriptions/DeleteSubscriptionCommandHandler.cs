@@ -10,17 +10,20 @@ using TradeUp.Domain.Core.Abstractions;
 using TradeUp.Domain.Core.Entities;
 using TradeUp.Domain.Core.Interfaces.Repositories;
 using TradeUp.Application.Abstractions.Messaging;
+using System.Data;
+using TradeUp.Application.Abstractions.Data;
+using TradeUp.Application.Queries.Subscriptions.GetSubscriptionsByUserId;
+using Dapper;
 
 namespace TradeUp.Application.CommandHandlers.Subscriptions
 {
     internal class DeleteSubscriptionCommandHandler : ICommandHandler<DeleteSubscriptionCommand, bool>
     {
-        private readonly ISubscriptionRepository _subscriptionRepository;
-        private readonly IUnitOfWork _unitOfWork;
-        public DeleteSubscriptionCommandHandler(ISubscriptionRepository subscriptionRepository, IUnitOfWork unitOfWork)
+        
+        private readonly ISqlConnectionFactory _sqlConnectionFactory;
+        public DeleteSubscriptionCommandHandler(ISqlConnectionFactory sqlConnectionFactory)
         {
-            _subscriptionRepository = subscriptionRepository;
-            _unitOfWork = unitOfWork;
+            _sqlConnectionFactory = sqlConnectionFactory;
         }
 
 
@@ -28,11 +31,30 @@ namespace TradeUp.Application.CommandHandlers.Subscriptions
         {
             try
             {
-                var subscription = await _subscriptionRepository.GetByIdAsync(request.Id);
+                using IDbConnection connection = _sqlConnectionFactory.CreateConnection();
 
-                _subscriptionRepository.Delete(subscription);
-                await _unitOfWork.SaveChangesAsync();
-                return Result.Success(true);
+                const string sql = """
+                    DELETE
+                    FROM subscriptions
+                    WHERE userid = @UserId and id = @SubId
+                    """;
+
+                var recordsDeletedCount = await connection.ExecuteAsync(sql,
+                    new
+                    {
+                        UserId = request.UserId,
+                        SubId = request.Id
+                    });
+
+                if(recordsDeletedCount == 1)
+                {
+                    return Result.Success(true);
+                }
+                else
+                {
+                    return Result.Failure<bool>(new Error("Operation Error", "Error processing your request"));
+                }
+                
                 
             }
             catch (ConcurrencyException)

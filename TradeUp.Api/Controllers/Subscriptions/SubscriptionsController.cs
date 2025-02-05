@@ -108,7 +108,7 @@ namespace TradeUp.Api.Controllers.Subscriptions
             CancellationToken cancellationToken)
         {
             var userId = _userContext.UserId;
-            var command = new DeleteSubscriptionCommand(request.Id);
+            var command = new DeleteSubscriptionCommand(request.Id, userId);
 
             var result = await _sender.Send(command, cancellationToken);
 

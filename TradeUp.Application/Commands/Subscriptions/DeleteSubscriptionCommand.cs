@@ -7,6 +7,6 @@ using TradeUp.Application.Abstractions.Messaging;
 
 namespace TradeUp.Application.Commands.Subscriptions
 {
-    public sealed record DeleteSubscriptionCommand(Guid Id) : ICommand<bool>;
+    public sealed record DeleteSubscriptionCommand(Guid Id, Guid UserId) : ICommand<bool>;
 
 }
