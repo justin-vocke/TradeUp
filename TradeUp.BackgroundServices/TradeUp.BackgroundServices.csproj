@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TradeUp.Application\TradeUp.Application.csproj" />
+    <ProjectReference Include="..\TradeUp.Infrastructure\TradeUp.Infrastructure.csproj" />
     <ProjectReference Include="..\TradeUp.Shared\TradeUp.Shared.csproj" />
   </ItemGroup>
 </Project>
