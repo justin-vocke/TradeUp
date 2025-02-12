@@ -21,6 +21,9 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
 using TradeUp.Api.OpenApi;
 using Asp.Versioning.ApiExplorer;
+using TradeUp.BackgroundServices;
+using TradeUp.Infrastructure.Websockets;
+using TradeUp.Infrastructure.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,13 +46,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddHttpClient<IStockApiClient, AlphaVantageApiClient>(client =>
-//{
-//    client.DefaultRequestHeaders.Add("Accept", "application/json");
-//    client.DefaultRequestHeaders.Add("User-Agent", "TradeUp"); // Optional, but good practice for APIs
-    
-//});
-builder.Services.Configure<AlphaVantageConfiguration>(builder.Configuration.GetSection("AlphaVantage"));
+
 
 builder.Services.AddHttpClient<IStockApiClient, FinnHubApiClient>(client =>
 {
@@ -69,6 +66,15 @@ void RegisterServices(IServiceCollection services, IConfiguration configuration)
 
 }
 
+builder.Services.AddSignalR();
+
+builder.Services.AddSingleton<FinnhubWebSocketClient>();
+
+builder.Services.AddSingleton<StockPriceListener>();
+
+builder.Services.AddHostedService<StockPriceListener>();
+
+builder.Services.Configure<FinnhubOptions>(builder.Configuration.GetSection("FinnhubSettings"));
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
 var app = builder.Build();

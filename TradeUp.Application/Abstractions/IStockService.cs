@@ -12,6 +12,6 @@ namespace TradeUp.Application.Abstractions
     {
 
         Task CheckThresholdsAsync();
-        IAsyncEnumerable<FinnHubStockDto> GetStockUpdates(CancellationToken stoppingToken);
+        //IAsyncEnumerable<FinnHubStockDto> GetStockUpdates(CancellationToken stoppingToken);
     }
 }
