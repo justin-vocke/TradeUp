@@ -14,9 +14,12 @@ namespace TradeUp.Application.DTO.FinnHub
         [JsonPropertyName("t")]
         public long TimeStamp { get; set; }
         [JsonPropertyName("p")]
-        public long LastPrice { get; set; }
+        public decimal LastPrice { get; set; }
         [JsonPropertyName("v")]
         public long Volume { get; set; }
+
+        [JsonPropertyName("c")]
+        public IEnumerable<string> Conditions { get; set; }
 
         // Convert the Unix timestamp to DateTime after deserialization
         [JsonIgnore] // We don't need to serialize this, just the timestamp.

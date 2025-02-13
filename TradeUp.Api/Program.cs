@@ -24,6 +24,7 @@ using Asp.Versioning.ApiExplorer;
 using TradeUp.BackgroundServices;
 using TradeUp.Infrastructure.Websockets;
 using TradeUp.Infrastructure.Options;
+using TradeUp.Shared.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -115,7 +116,10 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
+app.MapHub<StockHub>("/stockHub");
+
 app.MapControllers();
+
 
 app.MapHealthChecks("health", new HealthCheckOptions
 {

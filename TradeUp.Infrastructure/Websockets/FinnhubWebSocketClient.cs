@@ -30,7 +30,7 @@ namespace TradeUp.Infrastructure.Websockets
             _cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             await _webSocket.ConnectAsync(_uri, _cts.Token);
             OnConnected?.Invoke(this, EventArgs.Empty);
-            await SubscribeAsync("IBM");
+            
             _ = ReceiveMessagesAsync(_cts.Token); // Start listening
         }
 
