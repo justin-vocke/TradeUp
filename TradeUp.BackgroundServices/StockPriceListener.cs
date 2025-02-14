@@ -48,6 +48,12 @@ namespace TradeUp.BackgroundServices
             }
         }
 
+        public async Task SubscribeToStockAsync(string stockSymbol)
+        {
+            _logger.LogInformation($"Subscribing to {stockSymbol} stock updates...");
+            await _finnhubWebSocketClient.SubscribeAsync(stockSymbol); // 👈 Now actually subscribing
+        }
+
         private async Task ProcessStockUpdateAsync(FinnhubWebSocketResponse websocketResponse)
         {
             foreach (var trade in websocketResponse.Data)

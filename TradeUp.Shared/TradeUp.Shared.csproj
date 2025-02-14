@@ -22,4 +22,8 @@
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\TradeUp.Application.Abstractions\TradeUp.Application.Abstractions.csproj" />
+  </ItemGroup>
+
 </Project>

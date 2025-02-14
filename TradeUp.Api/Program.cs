@@ -71,6 +71,8 @@ builder.Services.AddSignalR();
 
 builder.Services.AddSingleton<FinnhubWebSocketClient>();
 
+builder.Services.AddSingleton<IStockWebSocketSubscriptionService, StockWebSocketSubscriptionService>();
+
 builder.Services.AddSingleton<StockPriceListener>();
 
 builder.Services.AddHostedService<StockPriceListener>();
